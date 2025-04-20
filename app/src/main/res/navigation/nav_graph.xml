@@ -3,26 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/TelaInicialSelecaoFragment">
 
+    <!-- FRAGMENTO DA TELA INICIAL -->
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.aula.trabalhoextensionista.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/TelaInicialSelecaoFragment"
+        android:name="com.aula.trabalhoextensionista.TelaInicialSelecaoFragment"
+        android:label="@string/selecao_label"
+        tools:layout="@layout/fragment_tela_inicial_selecao">
+
+        <!-- ACTIONS DE NAVEGAÇÃO -->
+        <action
+            android:id="@+id/action_Selecao_to_ListagemOngs"
+            app:destination="@id/ListagemOngsFragment" />
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_Selecao_to_ListagemVoluntarios"
+            app:destination="@id/ListagemVoluntariosFragment" />
     </fragment>
+
+    <!-- FRAGMENTO DA LISTAGEM DE ONGS -->
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.aula.trabalhoextensionista.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/ListagemOngsFragment"
+        android:name="com.aula.trabalhoextensionista.ListagemOngsFragment"
+        android:label="@string/listagem_ongs_label"
+        tools:layout="@layout/fragment_listagem_ongs">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_ListagemOngs_to_TelaInicialSelecao"
+            app:destination="@id/TelaInicialSelecaoFragment" />
     </fragment>
+
+    <!-- FRAGMENTO DA LISTAGEM DE VOLUNTARIOS -->
+    <fragment
+        android:id="@+id/ListagemVoluntariosFragment"
+        android:name="com.aula.trabalhoextensionista.ListagemVoluntariosFragment"
+        android:label="@string/listagem_voluntarios_label"
+        tools:layout="@layout/fragment_listagem_voluntarios">
+
+        <action
+            android:id="@+id/action_ListagemVoluntarios_to_TelaInicialSelecao"
+            app:destination="@id/TelaInicialSelecaoFragment" />
+    </fragment>
+
+
 </navigation>

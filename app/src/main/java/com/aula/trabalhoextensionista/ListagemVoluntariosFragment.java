@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.aula.trabalhoextensionista.databinding.FragmentSecondBinding;
+import com.aula.trabalhoextensionista.databinding.FragmentListagemOngsBinding;
 
-public class SecondFragment extends Fragment {
+public class ListagemVoluntariosFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentListagemOngsBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,18 +20,13 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentListagemOngsBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.buttonSecond.setOnClickListener(v ->
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment)
-        );
     }
 
     @Override
