@@ -25,7 +25,7 @@
     <!-- FRAGMENTO DA LISTAGEM DE ONGS -->
     <fragment
         android:id="@+id/ListagemOngsFragment"
-        android:name="com.aula.trabalhoextensionista.ListagemOngsFragment"
+        android:name="com.aula.trabalhoextensionista.ong.ListagemOngsFragment"
         android:label="@string/listagem_ongs_label"
         tools:layout="@layout/fragment_listagem_ongs">
 
@@ -37,7 +37,7 @@
     <!-- FRAGMENTO DA LISTAGEM DE VOLUNTARIOS -->
     <fragment
         android:id="@+id/ListagemVoluntariosFragment"
-        android:name="com.aula.trabalhoextensionista.ListagemVoluntariosFragment"
+        android:name="com.aula.trabalhoextensionista.voluntario.ListagemVoluntariosFragment"
         android:label="@string/listagem_voluntarios_label"
         tools:layout="@layout/fragment_listagem_voluntarios">
 
