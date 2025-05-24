@@ -16,10 +16,8 @@ import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.OngDAO;
 import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.databinding.FragmentListagemOngsBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ListagemOngsFragment extends Fragment {
@@ -42,7 +40,7 @@ public class ListagemOngsFragment extends Fragment {
 
         //Ao clicar botao + vai para tela de cadastro de ONG
         binding.fab.setOnClickListener(view -> NavHostFragment.findNavController(ListagemOngsFragment.this)
-                .navigate(R.id.action_Listagem_to_NovoExercicio));
+                .navigate(R.id.action_Listagem_to_NovaOng));
 
         return binding.getRoot();
     }
@@ -80,7 +78,7 @@ public class ListagemOngsFragment extends Fragment {
                             dadosBundle.putSerializable("ong", ong);
 
                             NavHostFragment.findNavController(ListagemOngsFragment.this)
-                                    .navigate(R.id.action_Listagem_to_NovoExercicio, dadosBundle);
+                                    .navigate(R.id.action_Listagem_to_NovaOng, dadosBundle);
                         });
 
                         //Seta o adapter no RecyclerView

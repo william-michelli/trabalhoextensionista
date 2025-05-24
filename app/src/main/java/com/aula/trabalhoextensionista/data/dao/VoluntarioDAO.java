@@ -19,13 +19,13 @@ public interface VoluntarioDAO {
     public void insert (Voluntario voluntario);
 
     @Query("SELECT * FROM Voluntario")
-    public List<Ong> getAllVoluntarios();
+    public List<Voluntario> getAllVoluntarios();
 
     @Query("SELECT * FROM Voluntario WHERE id = :id")
-    public Ong getVoluntarioById(int id);
+    public Voluntario getVoluntarioById(int id);
 
     @Update
-    public void editarVolutnario(Voluntario voluntario);
+    public void editarVoluntario(Voluntario voluntario);
 
     @Delete
     public void deleteVoluntario(Voluntario voluntario);

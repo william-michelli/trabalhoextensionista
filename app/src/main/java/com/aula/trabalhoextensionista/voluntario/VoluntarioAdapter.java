@@ -9,17 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aula.trabalhoextensionista.R;
+import com.aula.trabalhoextensionista.data.models.Ong;
+import com.aula.trabalhoextensionista.data.models.Voluntario;
+import com.aula.trabalhoextensionista.ong.OngAdapter;
 
 import java.util.List;
 
-public class VoluntarioAdapter extends RecyclerView.Adapter<VoluntarioAdapter.ViewHolder> {
+public class VoluntarioAdapter extends RecyclerView.Adapter<VoluntarioAdapter.ViewHolder>  {
 
-    private final List<String> items;
+    private final List<Voluntario> voluntarios;
 
-    public VoluntarioAdapter(List<String> items) {
-        this.items = items;
+    private final VoluntarioAdapter.OnItemClickListener clickVoluntarioListener;
+
+
+    public VoluntarioAdapter(List<Voluntario> voluntarios, VoluntarioAdapter.OnItemClickListener listener) {
+        this.voluntarios = voluntarios;
+        this.clickVoluntarioListener = listener;
     }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
 
@@ -31,19 +37,30 @@ public class VoluntarioAdapter extends RecyclerView.Adapter<VoluntarioAdapter.Vi
 
     @NonNull
     @Override
-    public VoluntarioAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.voluntario_item, parent, false);
-        return new ViewHolder(view);
+        return new VoluntarioAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VoluntarioAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(items.get(position));
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Voluntario voluntario = voluntarios.get(position);
+
+        holder.textView.setText(voluntario.getNome());
+
+        // Seta o onClick do item na listagem
+        holder.itemView.setOnClickListener(v -> {
+            clickVoluntarioListener.onItemClick(voluntario);
+        });
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Voluntario voluntario);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return voluntarios.size();
     }
 }

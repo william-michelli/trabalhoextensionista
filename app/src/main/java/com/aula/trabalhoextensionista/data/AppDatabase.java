@@ -22,7 +22,7 @@ import com.aula.trabalhoextensionista.data.models.Voluntario;
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract OngDAO OngDAO(); //Metodo abstrato
-    public abstract VoluntarioDAO voluntarioDAO();
+    public abstract VoluntarioDAO VoluntarioDAO();
     public static volatile AppDatabase INSTANCE;
     public static final int NUMBER_OF_THREADS = 4;
 

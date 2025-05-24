@@ -4,14 +4,38 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+import java.util.Date;
+
 @Entity
-public class Voluntario {
+public class Voluntario implements Serializable {//Implements Serializable -- PARA PASSAR DADOS ENTRE TELAS{
     @PrimaryKey(autoGenerate = true)
     private int id;
     @NonNull
     public String nome;
-    public int idade;
+    public String dataNascimento;
     public String descricao;
+
+    public String interesses;
+
+    public Voluntario() {
+
+    }
+
+    public Voluntario(@NonNull String nome, String dataNascimento, String descricao, String interesses) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.descricao = descricao;
+        this.interesses = interesses;
+    }
+
+    public Voluntario(int id, @NonNull String nome, String dataNascimento, String descricao, String interesses) {
+        this.id = id;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.descricao = descricao;
+        this.interesses = interesses;
+    }
 
     //region GETTERS, SETTERS, TOSTRING
     public void setId(int id) {
@@ -31,13 +55,9 @@ public class Voluntario {
         this.nome = nome;
     }
 
-    public int getIdade() {
-        return idade;
-    }
+    public String getDataNascimento() {return dataNascimento;}
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
+    public void setDataNascimento(String dataNascimento) {this.dataNascimento = dataNascimento;}
 
     public String getDescricao() {
         return descricao;
@@ -47,13 +67,18 @@ public class Voluntario {
         this.descricao = descricao;
     }
 
+    public String getInteresses() { return interesses;}
+
+    public void setInteresses(String interesses) { this.interesses = interesses;}
+
     @Override
     public String toString() {
         return "Voluntario{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", idade=" + idade +
+                ", data de nascimento=" + dataNascimento +
                 ", descricao='" + descricao + '\'' +
+                ", interesses='" + interesses + '\'' +
                 '}';
     }
 

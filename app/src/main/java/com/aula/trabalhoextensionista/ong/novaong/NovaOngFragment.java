@@ -1,7 +1,5 @@
 package com.aula.trabalhoextensionista.ong.novaong;
 
-import static android.view.View.GONE;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,9 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +21,6 @@ import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.OngDAO;
 import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.databinding.FragmentNovaOngBinding;
-import com.aula.trabalhoextensionista.ong.ListagemOngsFragment;
 
 public class NovaOngFragment extends Fragment {
     private View rootView;
@@ -40,7 +35,7 @@ public class NovaOngFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); // ✅ Required!
 
-        //Pega os dados da outra tela que foram passados com essa TAG
+        // Pega a ong que veio da listagem (Se foi clicado na listagem)
         if (getArguments() != null) {
             ong = (Ong) getArguments().getSerializable("ong");
         }
@@ -65,9 +60,6 @@ public class NovaOngFragment extends Fragment {
         ongDao = db.OngDAO();
 
         //region Se foi clicado na listagem mostra detalhes daquela ONG
-        // Refresh menu so it hides save button if needed
-        requireActivity().invalidateOptionsMenu();
-
         EditText txtId = view.findViewById(R.id.txtId);
 
         if (ong != null) {

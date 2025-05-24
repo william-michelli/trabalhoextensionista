@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".novaong.NovaOngFragment">
+    tools:context=".novovoluntario.NovoVoluntarioFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,6 +42,27 @@
             android:hint="@string/insira_o_nome" />
 
 
+        <!-- DataNascimento -->
+        <TextView
+            android:id="@+id/lblDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_datanascimento" />
+
+        <EditText
+            android:id="@+id/txtDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:layout_marginBottom="25dp"
+            android:minHeight="48dp"
+            android:hint="@string/insira_a_data_nascimento"
+            android:focusable="true"
+            android:clickable="true" />
+
+
         <!-- Descricao -->
         <TextView
             android:id="@+id/lblDescricao"
@@ -63,14 +84,14 @@
 
         <!-- Necessidades-->
         <TextView
-            android:id="@+id/lblNecessidades"
+            android:id="@+id/lblInteresses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/lbl_descricao" />
+            android:text="@string/lbl_interesses" />
 
         <EditText
-            android:id="@+id/txtNecessidades"
+            android:id="@+id/txtInteresses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

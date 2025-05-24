@@ -14,6 +14,10 @@
     <string name="insira_o_nome">Insira o nome</string>
     <string name="lbl_descricao">Descrição</string>
     <string name="insira_a_descricao">Insira a descrição</string>
+    <string name="lbl_datanascimento">Data de Nascimento</string>
+    <string name="insira_a_data_nascimento">Insira a data de nascimento</string>
     <string name="lbl_necessidades">Necessidades</string>
     <string name="insira_as_necessidades">Insira as necessidades separada por ;</string>
+    <string name="lbl_interesses">Interesses</string>
+    <string name="insira_os_interesses">Insira os interesses separada por ;</string>
 </resources>
