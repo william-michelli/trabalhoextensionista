@@ -4,15 +4,33 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "ong")
-public class Ong {
+public class Ong implements Serializable {//Implements Serializable -- PARA PASSAR DADOS ENTRE TELAS
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    int id;
     @NonNull
     String nome;
     String descricao;
     String necessidade; //O que a ONG precisa que façam
+
+    public Ong() { }
+
+    public Ong(@NonNull int id, @NonNull String nome, String descricao, String necessidade){
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.necessidade = necessidade;
+    }
+
+    public Ong(@NonNull String nome, String descricao, String necessidade){
+        this.nome = nome;
+        this.descricao = descricao;
+        this.necessidade = necessidade;
+    }
+
 
     //region GETTERS, SETTERS, TOSTRING
     public int getId() {

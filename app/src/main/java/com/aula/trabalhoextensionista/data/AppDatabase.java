@@ -26,7 +26,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public static volatile AppDatabase INSTANCE;
     public static final int NUMBER_OF_THREADS = 4;
 
-    static AppDatabase getDatabase(final Context context) { //Singleton
+    public static AppDatabase getDatabase(final Context context) { //Singleton
         if(INSTANCE == null) {
             synchronized (AppDatabase.class) { //Synchronized = somente uma thread acessa o objeto
                if (INSTANCE == null) {

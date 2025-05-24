@@ -7,19 +7,30 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aula.trabalhoextensionista.R;
+import com.aula.trabalhoextensionista.data.AppDatabase;
+import com.aula.trabalhoextensionista.data.dao.OngDAO;
+import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.databinding.FragmentListagemOngsBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ListagemOngsFragment extends Fragment {
 
     private FragmentListagemOngsBinding binding;
+
+    private OngDAO ongDao;
+
+    private RecyclerView recyclerView;
+
+    List<Ong> ongs = new ArrayList<>();
 
     @Override
     public View onCreateView(
@@ -29,14 +40,9 @@ public class ListagemOngsFragment extends Fragment {
 
         binding = FragmentListagemOngsBinding.inflate(inflater, container, false);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Botao de cadastro de ONGs", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
-        });
+        //Ao clicar botao + vai para tela de cadastro de ONG
+        binding.fab.setOnClickListener(view -> NavHostFragment.findNavController(ListagemOngsFragment.this)
+                .navigate(R.id.action_Listagem_to_NovoExercicio));
 
         return binding.getRoot();
     }
@@ -44,41 +50,51 @@ public class ListagemOngsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //region CRIA A LISTAGEM
-
-        //Pega a recycler view
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewListagemOngs);
+        //Pega a recycler view e atribui
+        recyclerView = view.findViewById(R.id.recyclerViewListagemOngs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
 
-        List<String> myList = Arrays.asList(
-                "Instituto Ayrton Senna",
-                "Fundação Abrinq",
-                "GRAACC",
-                "Médicos Sem Fronteiras Brasil",
-                "Amigos do Bem",
-                "Instituto Rodrigo Mendes",
-                "Instituto Sou da Paz",
-                "Instituto Ethos",
-                "Associação Vaga Lume",
-                "Projeto Tamar",
-                "Instituto Alana",
-                "Casa do Zezinho",
-                "Instituto Terra",
-                "Instituto Dara (ex-Saúde Criança)",
-                "Instituto Ayrton Senna",
-                "Fundação SOS Mata Atlântica",
-                "CIPÓ Comunicação Interativa",
-                "Instituto Reação",
-                "Instituto Rukha",
-                "Gerando Falcões"
-        );
-        //Cria o adapter, passando a lista
-        OngAdapter adapter = new OngAdapter(myList);
+    @Override
+    public void onResume() {
+        super.onResume();
+        AppDatabase db = AppDatabase.getDatabase(getContext());
+        ongDao = db.OngDAO();
 
-        //Seta o adapter no RecyclerView
-        recyclerView.setAdapter(adapter);
+        new Thread(() -> {
+            //Busca ONGS no banco
+            ongs = ongDao.getAllOngs();
 
-        //endregion
+            // TODO Valores padrao TIRAR DEPOIS******
+            ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
+            ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
+
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //region CRIA A LISTAGEM COM DADOS DO BANCO
+                        //Cria o adapter, passando a lista e OnClick do item
+                        OngAdapter adapter = new OngAdapter(ongs, ong -> {
+                            Bundle dadosBundle = new Bundle();
+                            dadosBundle.putSerializable("ong", ong);
+
+                            NavHostFragment.findNavController(ListagemOngsFragment.this)
+                                    .navigate(R.id.action_Listagem_to_NovoExercicio, dadosBundle);
+                        });
+
+                        //Seta o adapter no RecyclerView
+                        recyclerView.setAdapter(adapter);
+
+
+                        //Seta o adapter do recycler view
+                        binding.recyclerViewListagemOngs.setAdapter(adapter);
+
+                        //endregion
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override

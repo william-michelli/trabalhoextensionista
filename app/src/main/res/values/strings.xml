@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">trabalhoextensionista</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="selecao_label">Selecao</string>
     <string name="listagem_ongs_label">Listagem ONGs</string>
     <string name="listagem_voluntarios_label">Listagem Voluntários</string>
+    <string name="cadastrar_ong_titulo">Cadastrar ONG</string>
+    <string name="cadastrar_voluntario_titulo">Cadastrar Voluntário</string>
     <string name="ongs">ONGs</string>
     <string name="voluntarios">Voluntários</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum
-    </string>
+    <string name="lbl_nome">Nome</string>
+    <string name="insira_o_nome">Insira o nome</string>
+    <string name="lbl_descricao">Descrição</string>
+    <string name="insira_a_descricao">Insira a descrição</string>
+    <string name="lbl_necessidades">Necessidades</string>
+    <string name="insira_as_necessidades">Insira as necessidades separada por ;</string>
 </resources>

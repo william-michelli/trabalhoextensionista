@@ -9,15 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aula.trabalhoextensionista.R;
+import com.aula.trabalhoextensionista.data.models.Ong;
 
 import java.util.List;
 
 public class OngAdapter extends RecyclerView.Adapter<OngAdapter.ViewHolder> {
 
-    private final List<String> items;
+    private final List<Ong> ongs;
 
-    public OngAdapter(List<String> items) {
-        this.items = items;
+    private final OnItemClickListener clickOngListener;
+
+    public OngAdapter(List<Ong> ongs, OnItemClickListener listener) {
+        this.ongs = ongs;
+        this.clickOngListener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,19 +35,31 @@ public class OngAdapter extends RecyclerView.Adapter<OngAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public OngAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.ong_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OngAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(items.get(position));
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Ong ong = ongs.get(position);
+
+        holder.textView.setText(ong.getNome());
+
+        // Seta o onClick do item na listagem
+        holder.itemView.setOnClickListener(v -> {
+            clickOngListener.onItemClick(ong);
+        });
+    }
+
+
+    public interface OnItemClickListener {
+        void onItemClick(Ong ong);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return ongs.size();
     }
 }

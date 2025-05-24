@@ -32,6 +32,11 @@
         <action
             android:id="@+id/action_ListagemOngs_to_TelaInicialSelecao"
             app:destination="@id/TelaInicialSelecaoFragment" />
+
+        <!-- Action de ir pro Nova ONG -->
+        <action
+            android:id="@+id/action_Listagem_to_NovoExercicio"
+            app:destination="@id/NovaOngFragment" />
     </fragment>
 
     <!-- FRAGMENTO DA LISTAGEM DE VOLUNTARIOS -->
@@ -45,6 +50,23 @@
             android:id="@+id/action_ListagemVoluntarios_to_TelaInicialSelecao"
             app:destination="@id/TelaInicialSelecaoFragment" />
     </fragment>
+
+    <!-- Nova Ong Fragment -->
+    <fragment
+        android:id="@+id/NovaOngFragment"
+        android:name="com.aula.trabalhoextensionista.ong.novaong.NovaOngFragment"
+        android:label="@string/cadastrar_ong_titulo"
+        tools:layout="@layout/fragment_nova_ong">
+    </fragment>
+
+    <!-- Novo Voluntario Fragment -->
+<!--    <fragment-->
+<!--        android:id="@+id/NovoVoluntarioFragment"-->
+<!--        android:name="com.aula.trabalhoextensionista.voluntario.novovoluntario.NovoVoluntarioFragment"-->
+<!--        android:label="@string/cadastrar_voluntario_titulo"-->
+<!--        tools:layout="@layout/fragment_novo_voluntario">-->
+<!--    </fragment>-->
+
 
 
 </navigation>
