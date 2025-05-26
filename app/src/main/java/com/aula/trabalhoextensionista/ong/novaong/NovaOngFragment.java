@@ -21,6 +21,7 @@ import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.OngDAO;
 import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.databinding.FragmentNovaOngBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NovaOngFragment extends Fragment {
     private View rootView;
@@ -30,6 +31,7 @@ public class NovaOngFragment extends Fragment {
 
     private OngDAO ongDao;
     private FragmentNovaOngBinding binding;
+    private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +68,19 @@ public class NovaOngFragment extends Fragment {
             EditText txtNome = view.findViewById(R.id.txtNome);
             EditText txtDescricao = view.findViewById(R.id.txtDescricao);
             EditText txtNecessidades = view.findViewById(R.id.txtNecessidades);
+            EditText txtEmail = view.findViewById(R.id.txtEmail);
+            EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
+            EditText txtSenha = view.findViewById(R.id.txtSenha);
+            EditText txtTelefone = view.findViewById(R.id.txtTelefone);
 
             txtId.setText(String.valueOf(ong.getId()));
             txtNome.setText(ong.getNome());
             txtDescricao.setText(ong.getDescricao());
             txtNecessidades.setText(ong.getNecessidade());
+            txtEmail.setText(ong.getEmail());
+            txtLocalizacao.setText(ong.getLocalizacao());
+            txtSenha.setText(ong.getSenha());
+            txtTelefone.setText(ong.getTelefone());
 
             //Coloca READ-ONLY porque esta lendo detalhes
             txtNome.setEnabled(false);
@@ -114,6 +124,10 @@ public class NovaOngFragment extends Fragment {
             EditText nomeEditText = rootView.findViewById(R.id.txtNome);
             EditText descricaoEditText = rootView.findViewById(R.id.txtDescricao);
             EditText necessidadesEditText = rootView.findViewById(R.id.txtNecessidades);
+            EditText emailEditText = rootView.findViewById(R.id.txtEmail);
+            EditText localizacaoEditText = rootView.findViewById(R.id.txtLocalizacao);
+            EditText senhaEditText = rootView.findViewById(R.id.txtSenha);
+            EditText telefoneEditText = rootView.findViewById(R.id.txtTelefone);
 
 
             //Pega valores
@@ -121,8 +135,13 @@ public class NovaOngFragment extends Fragment {
             String nome = nomeEditText.getText().toString().trim();
             String descricao = descricaoEditText.getText().toString().trim();
             String necessidades = necessidadesEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String localizacao = localizacaoEditText.getText().toString().trim();
+            String senha = senhaEditText.getText().toString().trim();
+            String telefone = telefoneEditText.getText().toString().trim();
 
-            Ong ong = new Ong(nome, descricao, necessidades);
+            Ong ong = new Ong(nome, descricao, necessidades,
+                                email, localizacao, senha, telefone);
             enviaOngFirebase(ong);
             return true;
         }
@@ -133,9 +152,12 @@ public class NovaOngFragment extends Fragment {
         new Thread(() -> {
 
             /** TODO -- Aqui vai enviar os dados para o firebase */
+            firebaseDB
+                    .collection("ong").add(ong);
 
-            /** TODO (Tirar depois)- Insere no banco OBS: Só deixei aqui pra poder preencher com dados mais facil */
-            ongDao.insert(ong);
+
+//            /** TODO (Tirar depois)- Insere no banco OBS: Só deixei aqui pra poder preencher com dados mais facil */
+//            ongDao.insert(ong);
 
             getActivity().runOnUiThread(() -> {
                 Toast.makeText(getContext(), "ONG cadastrada!", Toast.LENGTH_SHORT).show();

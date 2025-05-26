@@ -20,4 +20,12 @@
     <string name="insira_as_necessidades">Insira as necessidades separada por ;</string>
     <string name="lbl_interesses">Interesses</string>
     <string name="insira_os_interesses">Insira os interesses separada por ;</string>
+    <string name="lbl_email">Email</string>
+    <string name="insira_o_email">Insira seu email </string>
+    <string name="lbl_localizacao">Localizacao</string>
+    <string name="insira_a_localizacao">Insira sua localizacao (cidadade, estado, distrito, etc) </string>
+    <string name="lbl_senha">Senha</string>
+    <string name="insira_a_senha">Insira sua senha</string>
+    <string name="lbl_telefone">Telefone</string>
+    <string name="insira_o_telfone">Insira seu telefone</string>
 </resources>

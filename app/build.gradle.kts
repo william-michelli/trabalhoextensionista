@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    //Serviços do Google para conexão com Firebase
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -35,6 +37,15 @@ android {
 }
 
 dependencies {
+    // Import Firebase BoM (Build of Materials)
+    implementation(platform(libs.firebase.bom))
+    // Pode adicionar dependências de outros módulos do firebase tb
+    // Quando usando o BoM, nao especificar versões em dependências do Firebase
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore)
+
+    // Outras dependências firebase:
+    // https://firebase.google.com/docs/android/setup#available-libraries
 
     implementation(libs.appcompat)
     implementation(libs.material)

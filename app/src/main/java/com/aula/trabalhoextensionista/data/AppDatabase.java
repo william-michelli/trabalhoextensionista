@@ -16,7 +16,7 @@ import com.aula.trabalhoextensionista.data.models.Voluntario;
                 Ong.class,
                 Voluntario.class
         },
-        version = 1,
+        version = 3,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -31,7 +31,9 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) { //Synchronized = somente uma thread acessa o objeto
                if (INSTANCE == null) {
                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                           AppDatabase.class, "app.db").build();
+                           AppDatabase.class, "app.db")
+                           .fallbackToDestructiveMigration()
+                           .build();
                }
             }
         }

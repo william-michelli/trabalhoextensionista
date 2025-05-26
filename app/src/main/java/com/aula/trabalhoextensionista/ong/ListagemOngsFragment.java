@@ -64,8 +64,8 @@ public class ListagemOngsFragment extends Fragment {
             ongs = ongDao.getAllOngs();
 
             // TODO Valores padrao TIRAR DEPOIS******
-            ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
-            ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
+//            ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
+//            ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
 
             if (getActivity() != null) {
                 getActivity().runOnUiThread(new Runnable() {
