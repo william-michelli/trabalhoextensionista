@@ -23,6 +23,7 @@ import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.VoluntarioDAO;
 import com.aula.trabalhoextensionista.data.models.Voluntario;
 import com.aula.trabalhoextensionista.databinding.FragmentNovoVoluntarioBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NovoVoluntarioFragment extends Fragment {
     private View rootView;
@@ -30,6 +31,8 @@ public class NovoVoluntarioFragment extends Fragment {
     private Voluntario voluntario = null;
     private VoluntarioDAO voluntarioDao;
     private FragmentNovoVoluntarioBinding binding;
+
+    private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +70,7 @@ public class NovoVoluntarioFragment extends Fragment {
             EditText txtDescricao = view.findViewById(R.id.txtDescricao);
             EditText txtInteresses= view.findViewById(R.id.txtInteresses);
 
-            txtId.setText(String.valueOf(voluntario.getId()));
+            txtId.setText(voluntario.getId());
             txtNome.setText(voluntario.getNome());
             txtDataNascimento.setText(voluntario.getDataNascimento());
             txtDescricao.setText(voluntario.getDescricao());
@@ -85,7 +88,7 @@ public class NovoVoluntarioFragment extends Fragment {
         // Set screen title
         if (getActivity() instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
-            if (voluntario != null && voluntario.getId() != 0) {
+            if (voluntario != null && voluntario.getId() != "") {
                 activity.getSupportActionBar().setTitle("Detalhes Voluntário");
             } else {
                 activity.getSupportActionBar().setTitle("Cadastrar Voluntário");
@@ -146,7 +149,7 @@ public class NovoVoluntarioFragment extends Fragment {
         MenuItem saveItem = menu.findItem(R.id.action_save);
 
         // Hide save button if editing existing voluntario
-        if (voluntario != null && voluntario.getId() != 0) {
+        if (voluntario != null && voluntario.getId() != "") {
             saveItem.setVisible(false);
         } else {
             saveItem.setVisible(true);
@@ -164,7 +167,7 @@ public class NovoVoluntarioFragment extends Fragment {
             EditText descricaoEditText = rootView.findViewById(R.id.txtDescricao);
             EditText interessesEditText = rootView.findViewById(R.id.txtInteresses);
 
-            int id = Integer.parseInt(idEditText.getText().toString().trim());
+            String id = idEditText.getText().toString().trim();
             String nome = nomeEditText.getText().toString().trim();
             String dataNascimento = dataNascimentoEditText.getText().toString().trim();
             String descricao = descricaoEditText.getText().toString().trim();
@@ -179,10 +182,11 @@ public class NovoVoluntarioFragment extends Fragment {
 
     private void enviaVoluntarioFirebase(Voluntario voluntario) {
         new Thread(() -> {
-            // TODO: Send data to Firebase here
+            /** TODO -- Aqui vai enviar os dados para o firebase */
+            firebaseDB.collection("voluntario").add(voluntario);
 
             // Insert into local DB
-            voluntarioDao.insert(voluntario);
+            //voluntarioDao.insert(voluntario);
 
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {

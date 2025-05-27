@@ -4,13 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 public class Voluntario implements Serializable {//Implements Serializable -- PARA PASSAR DADOS ENTRE TELAS{
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    @Exclude//Nao manda pro fireabase com EXCLUDE
+    String id = "";//Usa o ID do firebase
+
     @NonNull
     public String nome;
     public String dataNascimento;
@@ -29,7 +34,7 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
         this.interesses = interesses;
     }
 
-    public Voluntario(int id, @NonNull String nome, String dataNascimento, String descricao, String interesses) {
+    public Voluntario(@NonNull String id, @NonNull String nome, String dataNascimento, String descricao, String interesses) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -38,11 +43,12 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
     }
 
     //region GETTERS, SETTERS, TOSTRING
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    @Exclude
+    public String getId() {
         return id;
     }
 
@@ -62,6 +68,7 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
     public String getDescricao() {
         return descricao;
     }
+
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;

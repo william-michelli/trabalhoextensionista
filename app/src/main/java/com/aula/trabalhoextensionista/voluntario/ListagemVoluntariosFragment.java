@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,8 @@ import com.aula.trabalhoextensionista.databinding.FragmentListagemVoluntariosBin
 import com.aula.trabalhoextensionista.ong.ListagemOngsFragment;
 import com.aula.trabalhoextensionista.ong.OngAdapter;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +39,7 @@ public class ListagemVoluntariosFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
+    private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
     List<Voluntario> voluntarios = new ArrayList<>();
 
     @Override
@@ -70,11 +74,51 @@ public class ListagemVoluntariosFragment extends Fragment {
 
         new Thread(() -> {
             //Busca ONGS no banco
-            voluntarios = voluntarioDao.getAllVoluntarios();
+            //voluntarios = voluntarioDao.getAllVoluntarios();
 
-            // TODO Valores padrao TIRAR DEPOIS******
-            voluntarios.add(new Voluntario(1,"Mauricio", "23/04/1997", "teste descricao", "veterinario"));
-            voluntarios.add(new Voluntario(1, "João", "02/10/2000", "teste descricao", "cuidadores;medicos"));
+            new Thread(() -> {
+                //Busca ONGS no banco
+                //ongs = ongDao.getAllOngs();
+
+                //Busca dados no FIREBASE
+                firebaseDB.collection("voluntario")
+                        .get()
+                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                            voluntarios.clear();
+
+                            for (DocumentSnapshot document : queryDocumentSnapshots) {
+                                Voluntario voluntario = document.toObject(Voluntario.class);
+                                voluntario.setId(document.getId());
+                                voluntarios.add(voluntario);
+                            }
+
+                            if (getActivity() != null) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //region CRIA A LISTAGEM COM DADOS DO BANCO
+                                        //Cria o adapter, passando a lista e OnClick do item
+                                        VoluntarioAdapter adapter = new VoluntarioAdapter(voluntarios, voluntario -> {
+                                            Bundle dadosBundle = new Bundle();
+                                            dadosBundle.putSerializable("voluntario", voluntario);
+
+                                            NavHostFragment.findNavController(ListagemVoluntariosFragment.this)
+                                                    .navigate(R.id.action_Listagem_to_NovoVoluntario, dadosBundle);
+                                        });
+
+                                        //Seta o adapter no RecyclerView
+                                        recyclerView.setAdapter(adapter);
+
+                                        //Seta o adapter do recycler view
+                                        binding.recyclerViewListagemVoluntarios.setAdapter(adapter);
+
+                                        //endregion
+                                    }
+                                });
+                            }
+                        })
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), R.string.erro_ao_buscar_ongs, Toast.LENGTH_SHORT).show());
+            }).start();
 
             if (getActivity() != null) {
                 getActivity().runOnUiThread(new Runnable() {
@@ -92,7 +136,6 @@ public class ListagemVoluntariosFragment extends Fragment {
 
                         //Seta o adapter no RecyclerView
                         recyclerView.setAdapter(adapter);
-
 
                         //Seta o adapter do recycler view
                         binding.recyclerViewListagemVoluntarios.setAdapter(adapter);

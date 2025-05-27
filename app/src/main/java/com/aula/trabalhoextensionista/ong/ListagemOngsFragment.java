@@ -1,21 +1,24 @@
 package com.aula.trabalhoextensionista.ong;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aula.trabalhoextensionista.R;
 import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.OngDAO;
 import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.databinding.FragmentListagemOngsBinding;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class ListagemOngsFragment extends Fragment {
     private OngDAO ongDao;
 
     private RecyclerView recyclerView;
-
+    private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
     List<Ong> ongs = new ArrayList<>();
 
     @Override
@@ -61,37 +64,50 @@ public class ListagemOngsFragment extends Fragment {
 
         new Thread(() -> {
             //Busca ONGS no banco
-            ongs = ongDao.getAllOngs();
+            //ongs = ongDao.getAllOngs();
 
-            // TODO Valores padrao TIRAR DEPOIS******
-//            ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
-//            ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
+            //Busca dados no FIREBASE
+            firebaseDB.collection("ong")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    ongs.clear();
 
-            if (getActivity() != null) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //region CRIA A LISTAGEM COM DADOS DO BANCO
-                        //Cria o adapter, passando a lista e OnClick do item
-                        OngAdapter adapter = new OngAdapter(ongs, ong -> {
-                            Bundle dadosBundle = new Bundle();
-                            dadosBundle.putSerializable("ong", ong);
-
-                            NavHostFragment.findNavController(ListagemOngsFragment.this)
-                                    .navigate(R.id.action_Listagem_to_NovaOng, dadosBundle);
-                        });
-
-                        //Seta o adapter no RecyclerView
-                        recyclerView.setAdapter(adapter);
-
-
-                        //Seta o adapter do recycler view
-                        binding.recyclerViewListagemOngs.setAdapter(adapter);
-
-                        //endregion
+                    for (DocumentSnapshot document : queryDocumentSnapshots) {
+                        Ong ong = document.toObject(Ong.class);
+                        ong.setId(document.getId());
+                        ongs.add(ong);
                     }
-                });
-            }
+
+                    // TODO Valores padrao TIRAR DEPOIS******
+                    // ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
+                    //ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
+
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //region CRIA A LISTAGEM COM DADOS DO BANCO
+                                //Cria o adapter, passando a lista e OnClick do item
+                                OngAdapter adapter = new OngAdapter(ongs, ong -> {
+                                    Bundle dadosBundle = new Bundle();
+                                    dadosBundle.putSerializable("ong", ong);
+
+                                    NavHostFragment.findNavController(ListagemOngsFragment.this)
+                                            .navigate(R.id.action_Listagem_to_NovaOng, dadosBundle);
+                                });
+
+                                //Seta o adapter no RecyclerView
+                                recyclerView.setAdapter(adapter);
+
+                                //Seta o adapter do recycler view
+                                binding.recyclerViewListagemOngs.setAdapter(adapter);
+
+                                //endregion
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(getContext(), R.string.erro_ao_buscar_ongs, Toast.LENGTH_SHORT).show());
         }).start();
     }
 
