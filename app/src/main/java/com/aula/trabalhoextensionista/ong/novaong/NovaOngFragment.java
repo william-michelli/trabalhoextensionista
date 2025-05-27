@@ -1,5 +1,7 @@
 package com.aula.trabalhoextensionista.ong.novaong;
 
+import static android.view.View.GONE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -71,9 +74,10 @@ public class NovaOngFragment extends Fragment {
             EditText txtEmail = view.findViewById(R.id.txtEmail);
             EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
             EditText txtSenha = view.findViewById(R.id.txtSenha);
+            TextView lblSenha = view.findViewById(R.id.lblSenha);
             EditText txtTelefone = view.findViewById(R.id.txtTelefone);
 
-            txtId.setText(String.valueOf(ong.getId()));
+            txtId.setText(ong.getId());
             txtNome.setText(ong.getNome());
             txtDescricao.setText(ong.getDescricao());
             txtNecessidades.setText(ong.getNecessidade());
@@ -86,6 +90,13 @@ public class NovaOngFragment extends Fragment {
             txtNome.setEnabled(false);
             txtDescricao.setEnabled(false);
             txtNecessidades.setEnabled(false);
+            txtEmail.setEnabled(false);
+            txtLocalizacao.setEnabled(false);
+            txtTelefone.setEnabled(false);
+
+            txtSenha.setVisibility(GONE);
+            lblSenha.setVisibility(GONE);
+
         } else {
             txtId.setText("0");
         }
@@ -93,7 +104,7 @@ public class NovaOngFragment extends Fragment {
         //Seta titulo tela de cadastro
         if (getActivity() instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
-            if (ong != null && ong.getId() != 0) {
+            if (ong != null && ong.getId() != "") {
                 activity.getSupportActionBar().setTitle("Detalhes ONG");
             } else {
                 activity.getSupportActionBar().setTitle("Cadastrar ONG");
@@ -109,7 +120,7 @@ public class NovaOngFragment extends Fragment {
         MenuItem saveItem = menu.findItem(R.id.action_save);
 
         // Check if ONG exists and has an ID, then hide the button
-        if (ong != null && ong.getId() != 0) {
+        if (ong != null && ong.getId() != "") {
             saveItem.setVisible(false);
         } else {
             saveItem.setVisible(true);
@@ -131,7 +142,7 @@ public class NovaOngFragment extends Fragment {
 
 
             //Pega valores
-            int id = Integer.parseInt(idEditText.getText().toString().trim());
+            String id = idEditText.getText().toString().trim();
             String nome = nomeEditText.getText().toString().trim();
             String descricao = descricaoEditText.getText().toString().trim();
             String necessidades = necessidadesEditText.getText().toString().trim();
@@ -152,12 +163,11 @@ public class NovaOngFragment extends Fragment {
         new Thread(() -> {
 
             /** TODO -- Aqui vai enviar os dados para o firebase */
-            firebaseDB
-                    .collection("ong").add(ong);
+            firebaseDB.collection("ong").add(ong);
 
 
-//            /** TODO (Tirar depois)- Insere no banco OBS: Só deixei aqui pra poder preencher com dados mais facil */
-//            ongDao.insert(ong);
+            /** TODO (Tirar depois)- Insere no banco OBS: Só deixei aqui pra poder preencher com dados mais facil */
+            // ongDao.insert(ong);
 
             getActivity().runOnUiThread(() -> {
                 Toast.makeText(getContext(), "ONG cadastrada!", Toast.LENGTH_SHORT).show();

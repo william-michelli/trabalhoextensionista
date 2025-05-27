@@ -28,4 +28,5 @@
     <string name="insira_a_senha">Insira sua senha</string>
     <string name="lbl_telefone">Telefone</string>
     <string name="insira_o_telfone">Insira seu telefone</string>
+    <string name="erro_ao_buscar_ongs">Erro ao buscar ongs</string>
 </resources>

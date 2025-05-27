@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.io.Serializable;
 
 @Entity(tableName = "ong")
 public class Ong implements Serializable {//Implements Serializable -- PARA PASSAR DADOS ENTRE TELAS
 
-    @PrimaryKey(autoGenerate = true)
-    int id;
+    @PrimaryKey
+    @NonNull
+    @Exclude//Nao manda pro fireabase com EXCLUDE
+    String id = "";//Usa o ID do firebase
     @NonNull
     String nome;
     String descricao;
@@ -22,7 +26,7 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     public Ong() { }
 
-    public Ong(@NonNull int id, @NonNull String nome, String descricao, String necessidade,
+    public Ong(@NonNull String id, @NonNull String nome, String descricao, String necessidade,
                String email, String localizacao, String senha, String telefone){
         this.id = id;
         this.nome = nome;
@@ -79,11 +83,12 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.telefone = telefone;
     }
 
-    public int getId() {
+    @Exclude
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
