@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D0C5C5"
     tools:context=".novaong.NovaOngFragment">
 
     <LinearLayout
@@ -17,10 +18,10 @@
             android:id="@+id/txtId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
             android:ems="10"
             android:inputType="text"
-            android:layout_marginBottom="25dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 
         <!-- Nome-->
@@ -28,18 +29,18 @@
             android:id="@+id/lblNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_nome" />
+            android:text="@string/lbl_nome"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapWords|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_o_nome" />
+            android:ems="10"
+            android:hint="@string/insira_o_nome"
+            android:inputType="textCapWords|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
 
         <!-- Descricao -->
@@ -47,18 +48,18 @@
             android:id="@+id/lblDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_descricao" />
+            android:text="@string/lbl_descricao"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_a_descricao" />
+            android:ems="10"
+            android:hint="@string/insira_a_descricao"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
 
         <!-- Necessidades-->
@@ -66,18 +67,18 @@
             android:id="@+id/lblNecessidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_necessidades" />
+            android:text="@string/lbl_necessidades"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtNecessidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_as_necessidades" />
+            android:ems="10"
+            android:hint="@string/insira_as_necessidades"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/lblEmail"

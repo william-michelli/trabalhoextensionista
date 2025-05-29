@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D0C5C5"
     tools:context=".TelaInicialSelecaoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,22 +14,27 @@
 
         <Button
             android:id="@+id/button_listagem_ongs"
-            android:layout_width="201dp"
-            android:layout_height="56dp"
+            android:layout_width="302dp"
+            android:layout_height="93dp"
             android:layout_marginTop="236dp"
+            android:backgroundTint="#6A8A45"
             android:text="@string/ongs"
+            android:textSize="24sp"
+            app:layout_constraintCircleRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button_listagem_voluntarios"
-            android:layout_width="201dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="340dp"
+            android:layout_width="302dp"
+            android:layout_height="93dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#2E70A4"
             android:text="@string/voluntarios"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/button_listagem_ongs" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

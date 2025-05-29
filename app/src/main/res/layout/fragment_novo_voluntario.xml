@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D0C5C5"
     tools:context=".novovoluntario.NovoVoluntarioFragment">
 
     <LinearLayout
@@ -17,10 +18,10 @@
             android:id="@+id/txtId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
             android:ems="10"
             android:inputType="text"
-            android:layout_marginBottom="25dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 
         <!-- Nome-->
@@ -28,18 +29,18 @@
             android:id="@+id/lblNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_nome" />
+            android:text="@string/lbl_nome"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapWords|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_o_nome" />
+            android:ems="10"
+            android:hint="@string/insira_o_nome"
+            android:inputType="textCapWords|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
 
         <!-- DataNascimento -->
@@ -47,20 +48,20 @@
             android:id="@+id/lblDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_datanascimento" />
+            android:text="@string/lbl_datanascimento"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_a_data_nascimento"
+            android:clickable="true"
+            android:ems="10"
             android:focusable="true"
-            android:clickable="true" />
+            android:hint="@string/insira_a_data_nascimento"
+            android:inputType="date"
+            android:minHeight="48dp" />
 
 
         <!-- Descricao -->
@@ -68,18 +69,18 @@
             android:id="@+id/lblDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_descricao" />
+            android:text="@string/lbl_descricao"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_a_descricao" />
+            android:ems="10"
+            android:hint="@string/insira_a_descricao"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
 
         <!-- Necessidades-->
@@ -87,18 +88,18 @@
             android:id="@+id/lblInteresses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_interesses" />
+            android:text="@string/lbl_interesses"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtInteresses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_as_necessidades" />
+            android:ems="10"
+            android:hint="@string/insira_as_necessidades"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
