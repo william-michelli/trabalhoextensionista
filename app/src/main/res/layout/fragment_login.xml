@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="#BAAFAF"
+android:background="#ffffff"
 tools:context=".login.LoginFragment">
 
 <LinearLayout
@@ -34,12 +34,11 @@ tools:context=".login.LoginFragment">
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="#D1C6C6"
+        android:background="#f3f6f4"
         android:hint="@string/email_da_ong_ou_volunt_rio"
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:inputType="textEmailAddress|textNoSuggestions"
-        android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
         android:layout_marginBottom="16dp" />
 
     <!-- SENHA -->
@@ -56,7 +55,7 @@ tools:context=".login.LoginFragment">
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:autofillHints="Digite a senha"
-        android:background="#D1C6C6"
+        android:background="#f3f6f4"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:minWidth="48dp"

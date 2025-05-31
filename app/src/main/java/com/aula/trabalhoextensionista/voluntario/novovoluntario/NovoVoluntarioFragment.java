@@ -186,7 +186,7 @@ public class NovoVoluntarioFragment extends Fragment {
             String telefone = telefoneEditText.getText().toString().trim();
             String localizacao = localizacaoEditText.getText().toString().trim();
             String interesses = interessesEditText.getText().toString().trim();
-            String email = emailEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim().toLowerCase();;
             String senha = senhaEditText.getText().toString().trim();
 
             Voluntario novoVoluntario = new Voluntario(nome, email, senha, dataNascimento, interesses, localizacao, telefone);

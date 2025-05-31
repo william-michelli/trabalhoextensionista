@@ -33,7 +33,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.btnEntrar.setOnClickListener(v -> {
-            String email = binding.editTextEmail.getText().toString().trim();
+            String email = binding.editTextEmail.getText().toString().trim().toLowerCase();;
             String senha = binding.editTextSenha.getText().toString().trim();
 
             if (email.isEmpty() || senha.isEmpty()) {

@@ -141,7 +141,7 @@ public class NovaOngFragment extends Fragment {
             String id = idEditText.getText().toString().trim();
             String nome = nomeEditText.getText().toString().trim();
             String necessidades = necessidadesEditText.getText().toString().trim();
-            String email = emailEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim().toLowerCase();;
             String localizacao = localizacaoEditText.getText().toString().trim();
             String senha = senhaEditText.getText().toString().trim();
             String telefone = telefoneEditText.getText().toString().trim();

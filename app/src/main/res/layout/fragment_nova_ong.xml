@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".ong.novaong.NovaOngFragment">
 
     <LinearLayout
@@ -42,25 +43,6 @@
             android:hint="@string/insira_o_nome" />
 
 
-        <!-- Necessidades-->
-        <TextView
-            android:id="@+id/lblNecessidades"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_necessidades" />
-
-        <EditText
-            android:id="@+id/txtNecessidades"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
-            android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_as_necessidades" />
-
-
         <!-- Email-->
         <TextView
             android:id="@+id/lblEmail"
@@ -76,25 +58,6 @@
             android:ems="10"
             android:hint="@string/insira_o_email"
             android:inputType="textEmailAddress|textNoSuggestions"
-            android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-            android:minHeight="48dp" />
-
-
-        <!-- Localizacao-->
-        <TextView
-            android:id="@+id/lblLocalizacao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_localizacao" />
-
-        <EditText
-            android:id="@+id/txtLocalizacao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:ems="10"
-            android:hint="@string/insira_a_localizacao"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:minHeight="48dp" />
 
 
@@ -116,6 +79,24 @@
             android:minHeight="48dp" />
 
 
+        <!-- Localizacao-->
+        <TextView
+            android:id="@+id/lblLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_localizacao" />
+
+        <EditText
+            android:id="@+id/txtLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_a_localizacao"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
+
+
         <!-- Telefone -->
         <TextView
             android:id="@+id/lblTelefone"
@@ -132,6 +113,25 @@
             android:hint="@string/insira_o_telfone"
             android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:minHeight="48dp" />
+
+
+        <!-- Necessidades-->
+        <TextView
+            android:id="@+id/lblNecessidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_necessidades" />
+
+        <EditText
+            android:id="@+id/txtNecessidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:layout_marginBottom="25dp"
+            android:minHeight="48dp"
+            android:hint="@string/insira_as_necessidades" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
