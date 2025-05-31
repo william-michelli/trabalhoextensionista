@@ -69,7 +69,6 @@ public class NovaOngFragment extends Fragment {
 
         if (ong != null) {
             EditText txtNome = view.findViewById(R.id.txtNome);
-            EditText txtDescricao = view.findViewById(R.id.txtDescricao);
             EditText txtNecessidades = view.findViewById(R.id.txtNecessidades);
             EditText txtEmail = view.findViewById(R.id.txtEmail);
             EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
@@ -79,8 +78,7 @@ public class NovaOngFragment extends Fragment {
 
             txtId.setText(ong.getId());
             txtNome.setText(ong.getNome());
-            txtDescricao.setText(ong.getDescricao());
-            txtNecessidades.setText(ong.getNecessidade());
+            txtNecessidades.setText(ong.getNecessidades());
             txtEmail.setText(ong.getEmail());
             txtLocalizacao.setText(ong.getLocalizacao());
             txtSenha.setText(ong.getSenha());
@@ -88,7 +86,6 @@ public class NovaOngFragment extends Fragment {
 
             //Coloca READ-ONLY porque esta lendo detalhes
             txtNome.setEnabled(false);
-            txtDescricao.setEnabled(false);
             txtNecessidades.setEnabled(false);
             txtEmail.setEnabled(false);
             txtLocalizacao.setEnabled(false);
@@ -133,7 +130,6 @@ public class NovaOngFragment extends Fragment {
         if (item.getItemId() == R.id.action_save) {
             EditText idEditText = rootView.findViewById(R.id.txtId);
             EditText nomeEditText = rootView.findViewById(R.id.txtNome);
-            EditText descricaoEditText = rootView.findViewById(R.id.txtDescricao);
             EditText necessidadesEditText = rootView.findViewById(R.id.txtNecessidades);
             EditText emailEditText = rootView.findViewById(R.id.txtEmail);
             EditText localizacaoEditText = rootView.findViewById(R.id.txtLocalizacao);
@@ -144,15 +140,13 @@ public class NovaOngFragment extends Fragment {
             //Pega valores
             String id = idEditText.getText().toString().trim();
             String nome = nomeEditText.getText().toString().trim();
-            String descricao = descricaoEditText.getText().toString().trim();
             String necessidades = necessidadesEditText.getText().toString().trim();
             String email = emailEditText.getText().toString().trim();
             String localizacao = localizacaoEditText.getText().toString().trim();
             String senha = senhaEditText.getText().toString().trim();
             String telefone = telefoneEditText.getText().toString().trim();
 
-            Ong ong = new Ong(nome, descricao, necessidades,
-                                email, localizacao, senha, telefone);
+            Ong ong = new Ong(nome, necessidades, email, localizacao, senha, telefone);
             enviaOngFirebase(ong);
             return true;
         }

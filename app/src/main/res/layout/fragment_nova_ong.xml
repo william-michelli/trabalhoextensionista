@@ -42,25 +42,6 @@
             android:hint="@string/insira_o_nome" />
 
 
-        <!-- Descricao -->
-        <TextView
-            android:id="@+id/lblDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/lbl_descricao" />
-
-        <EditText
-            android:id="@+id/txtDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
-            android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_a_descricao" />
-
-
         <!-- Necessidades-->
         <TextView
             android:id="@+id/lblNecessidades"
@@ -79,6 +60,8 @@
             android:minHeight="48dp"
             android:hint="@string/insira_as_necessidades" />
 
+
+        <!-- Email-->
         <TextView
             android:id="@+id/lblEmail"
             android:layout_width="match_parent"
@@ -96,6 +79,8 @@
             android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
             android:minHeight="48dp" />
 
+
+        <!-- Localizacao-->
         <TextView
             android:id="@+id/lblLocalizacao"
             android:layout_width="match_parent"
@@ -112,6 +97,8 @@
             android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:minHeight="48dp" />
 
+
+        <!-- Senha -->
         <TextView
             android:id="@+id/lblSenha"
             android:layout_width="match_parent"
@@ -128,6 +115,8 @@
             android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:minHeight="48dp" />
 
+
+        <!-- Telefone -->
         <TextView
             android:id="@+id/lblTelefone"
             android:layout_width="match_parent"

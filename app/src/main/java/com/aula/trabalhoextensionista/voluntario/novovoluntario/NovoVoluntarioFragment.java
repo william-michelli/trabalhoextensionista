@@ -67,20 +67,30 @@ public class NovoVoluntarioFragment extends Fragment {
 
         if (voluntario != null) {
             EditText txtNome = view.findViewById(R.id.txtNome);
-            EditText txtDescricao = view.findViewById(R.id.txtDescricao);
-            EditText txtInteresses= view.findViewById(R.id.txtInteresses);
+            EditText txtInteresses = view.findViewById(R.id.txtInteresses);
+            EditText txtEmail = view.findViewById(R.id.txtEmail);
+            EditText txtSenha = view.findViewById(R.id.txtSenha);
+            EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
+            EditText txtTelefone = view.findViewById(R.id.txtTelefone);
 
             txtId.setText(voluntario.getId());
             txtNome.setText(voluntario.getNome());
+            txtEmail.setText(voluntario.getEmail());
+            txtSenha.setText(voluntario.getSenha());
             txtDataNascimento.setText(voluntario.getDataNascimento());
-            txtDescricao.setText(voluntario.getDescricao());
             txtInteresses.setText(voluntario.getInteresses());
+            txtLocalizacao.setText(voluntario.getLocalizacao());
+            txtTelefone.setText(voluntario.getTelefone());
 
             // Disable fields for details view
             txtNome.setEnabled(false);
+            txtEmail.setEnabled(false);
+            txtSenha.setEnabled(false);
+            txtLocalizacao.setEnabled(false);
             txtDataNascimento.setEnabled(false);
-            txtDescricao.setEnabled(false);
             txtInteresses.setEnabled(false);
+            txtTelefone.setEnabled(false);
+            txtLocalizacao.setEnabled(false);
         } else {
             txtId.setText("0");
         }
@@ -164,16 +174,22 @@ public class NovoVoluntarioFragment extends Fragment {
             EditText idEditText = rootView.findViewById(R.id.txtId);
             EditText nomeEditText = rootView.findViewById(R.id.txtNome);
             EditText dataNascimentoEditText = rootView.findViewById(R.id.txtDataNascimento);
-            EditText descricaoEditText = rootView.findViewById(R.id.txtDescricao);
+            EditText telefoneEditText = rootView.findViewById(R.id.txtTelefone);
+            EditText localizacaoEditText = rootView.findViewById(R.id.txtLocalizacao);
             EditText interessesEditText = rootView.findViewById(R.id.txtInteresses);
+            EditText emailEditText = rootView.findViewById(R.id.txtEmail);
+            EditText senhaEditText = rootView.findViewById(R.id.txtSenha);
 
             String id = idEditText.getText().toString().trim();
             String nome = nomeEditText.getText().toString().trim();
             String dataNascimento = dataNascimentoEditText.getText().toString().trim();
-            String descricao = descricaoEditText.getText().toString().trim();
+            String telefone = telefoneEditText.getText().toString().trim();
+            String localizacao = localizacaoEditText.getText().toString().trim();
             String interesses = interessesEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String senha = senhaEditText.getText().toString().trim();
 
-            Voluntario novoVoluntario = new Voluntario(nome, dataNascimento, descricao, interesses);
+            Voluntario novoVoluntario = new Voluntario(nome, email, senha, dataNascimento, interesses, localizacao, telefone);
             enviaVoluntarioFirebase(novoVoluntario);
             return true;
         }

@@ -17,32 +17,29 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
     String id = "";//Usa o ID do firebase
     @NonNull
     String nome;
-    String descricao;
-    String necessidade; //O que a ONG precisa que façam
     String email;
-    String localizacao;
     String senha;
+    String necessidades; //O que a ONG precisa que façam
+    String localizacao;
     String telefone;
 
     public Ong() { }
 
-    public Ong(@NonNull String id, @NonNull String nome, String descricao, String necessidade,
+    public Ong(@NonNull String id, @NonNull String nome, String necessidade,
                String email, String localizacao, String senha, String telefone){
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
-        this.necessidade = necessidade;
+        this.necessidades = necessidade;
         this.email = email;
         this.localizacao = localizacao;
         this.senha = senha;
         this.telefone = telefone;
     }
 
-    public Ong(@NonNull String nome, String descricao, String necessidade, String email,
+    public Ong(@NonNull String nome, String necessidades, String email,
                String localizacao, String senha, String telefone){
         this.nome = nome;
-        this.descricao = descricao;
-        this.necessidade = necessidade;
+        this.necessidades = necessidades;
         this.email = email;
         this.localizacao = localizacao;
         this.senha = senha;
@@ -51,44 +48,12 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     //region GETTERS, SETTERS, TOSTRING
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    @Exclude
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -101,31 +66,58 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNecessidade() {
-        return necessidade;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNecessidade(String necessidade) {
-        this.necessidade = necessidade;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNecessidades() {
+        return necessidades;
+    }
+
+    public void setNecessidades(String necessidades) {
+        this.necessidades = necessidades;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @Override
     public String toString() {
         return "Ong{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", necessidade='" + necessidade + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", necessidades='" + necessidades + '\'' +
+                ", localizacao='" + localizacao + '\'' +
+                ", telefone='" + telefone + '\'' +
                 '}';
     }
 
-    //endregion
+//endregion
 }
