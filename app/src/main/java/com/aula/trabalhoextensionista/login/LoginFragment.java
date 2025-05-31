@@ -17,6 +17,8 @@ import com.aula.trabalhoextensionista.voluntario.ListagemVoluntariosFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
@@ -51,11 +53,17 @@ public class LoginFragment extends Fragment {
                         if (!voluntarioQuery.isEmpty()) {
                             for (DocumentSnapshot doc : voluntarioQuery) {
                                 String nome = doc.getString("nome");
-                                Toast.makeText(requireContext(), "Voluntário encontrado: " + nome, Toast.LENGTH_SHORT).show();
+                                String senhaNoBanco = doc.getString("senha");
 
-                                // Navega para listagem de ONGS (Voluntario ve ONGS)
-                                NavHostFragment.findNavController(LoginFragment.this)
-                                        .navigate(R.id.action_Login_to_ListagemOngs);
+                                if(Objects.equals(senhaNoBanco, senha)){
+                                    Toast.makeText(requireContext(), "Bem Vindo Voluntário " + nome, Toast.LENGTH_SHORT).show();
+
+                                    // Navega para listagem de ONGS (Voluntario ve ONGS)
+                                    NavHostFragment.findNavController(LoginFragment.this)
+                                            .navigate(R.id.action_Login_to_ListagemOngs);
+                                } else {
+                                    Toast.makeText(requireContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
+                                }
                                 return;
                             }
                         } else {
@@ -67,11 +75,17 @@ public class LoginFragment extends Fragment {
                                         if (!ongQuery.isEmpty()) {
                                             for (DocumentSnapshot doc : ongQuery) {
                                                 String nome = doc.getString("nome");
-                                                Toast.makeText(requireContext(), "ONG encontrada: " + nome, Toast.LENGTH_SHORT).show();
+                                                String senhaNoBanco = doc.getString("senha");
 
-                                                // Navega para listagem de Volunrarios (ONG ve Voluntarios)
-                                                NavHostFragment.findNavController(LoginFragment.this)
-                                                        .navigate(R.id.action_Login_to_ListagemVoluntarios);
+                                                if(Objects.equals(senhaNoBanco, senha)){
+                                                    Toast.makeText(requireContext(), "Bem Vindo ONG " + nome, Toast.LENGTH_SHORT).show();
+
+                                                    // Navega para listagem de Voluntarios (ONG ve Voluntarios)
+                                                    NavHostFragment.findNavController(LoginFragment.this)
+                                                            .navigate(R.id.action_Login_to_ListagemVoluntarios);
+                                                } else {
+                                                    Toast.makeText(requireContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
                                         } else {
                                             Toast.makeText(requireContext(), "Nenhum voluntário ou ONG encontrado com esse email.", Toast.LENGTH_LONG).show();

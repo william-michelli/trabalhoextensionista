@@ -22,30 +22,39 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
     String senha;
     public String dataNascimento;
     public String interesses;
-    String localizacao;
+    String pais;
+    String estado;
+    String cidade;
     String telefone;
+
+
 
     public Voluntario() {
 
     }
 
-    public Voluntario(@NonNull String nome, String email, String senha, String dataNascimento, String interesses, String localizacao, String telefone) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
-        this.interesses = interesses;
-        this.localizacao = localizacao;
-        this.telefone = telefone;
-    }
-    public Voluntario(@NonNull String id, @NonNull String nome, String email, String senha, String dataNascimento, String interesses, String localizacao, String telefone) {
+    public Voluntario(@NonNull String id, @NonNull String nome, String email, String senha, String dataNascimento, String interesses, String pais, String estado, String cidade, String telefone) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.interesses = interesses;
-        this.localizacao = localizacao;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.telefone = telefone;
+    }
+
+    public Voluntario(@NonNull String nome, String email, String senha, String dataNascimento, String interesses, String pais, String estado, String cidade, String telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+        this.interesses = interesses;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
         this.telefone = telefone;
     }
 
@@ -101,12 +110,28 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
         this.interesses = interesses;
     }
 
-    public String getLocalizacao() {
-        return localizacao;
+    public String getPais() {
+        return pais;
     }
 
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getTelefone() {
@@ -126,10 +151,12 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
                 ", senha='" + senha + '\'' +
                 ", dataNascimento='" + dataNascimento + '\'' +
                 ", interesses='" + interesses + '\'' +
-                ", localizacao='" + localizacao + '\'' +
+                ", pais='" + pais + '\'' +
+                ", estado='" + estado + '\'' +
+                ", cidade='" + cidade + '\'' +
                 ", telefone='" + telefone + '\'' +
                 '}';
     }
 
-    //endregion
+//endregion
 }

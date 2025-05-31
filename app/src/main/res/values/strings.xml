@@ -22,8 +22,12 @@
     <string name="insira_os_interesses">Insira os interesses separada por ;</string>
     <string name="lbl_email">Email</string>
     <string name="insira_o_email">Insira seu email </string>
-    <string name="lbl_localizacao">Localizacao</string>
-    <string name="insira_a_localizacao">Insira sua localizacao (cidadade, estado, distrito, etc) </string>
+    <string name="lbl_pais">País</string>
+    <string name="lbl_estado">Estado</string>
+    <string name="lbl_cidade">Cidade</string>
+    <string name="insira_seu_pais">Insira seu país</string>
+    <string name="insira_seu_estado">Insira seu estado</string>
+    <string name="insira_sua_cidade">Insira sua cidade</string>
     <string name="lbl_senha">Senha</string>
     <string name="insira_a_senha">Insira sua senha</string>
     <string name="lbl_telefone">Telefone</string>

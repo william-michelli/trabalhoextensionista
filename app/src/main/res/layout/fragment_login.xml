@@ -39,6 +39,7 @@ tools:context=".login.LoginFragment">
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:inputType="textEmailAddress|textNoSuggestions"
+        android:paddingStart="12dp"
         android:layout_marginBottom="16dp" />
 
     <!-- SENHA -->
@@ -60,6 +61,7 @@ tools:context=".login.LoginFragment">
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:hint="@string/digite_a_senha"
+        android:paddingStart="12dp"
         android:layout_marginBottom="24dp" />
 
     <!-- BOTAO ENTRAR -->

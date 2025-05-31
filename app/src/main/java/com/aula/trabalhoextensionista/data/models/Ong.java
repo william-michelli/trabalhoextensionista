@@ -20,33 +20,37 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
     String email;
     String senha;
     String necessidades; //O que a ONG precisa que façam
-    String localizacao;
+    String pais;
+    String estado;
+    String cidade;
     String telefone;
 
     public Ong() { }
 
-    public Ong(@NonNull String id, @NonNull String nome, String necessidade,
-               String email, String localizacao, String senha, String telefone){
+    public Ong(@NonNull String id, @NonNull String nome, String email, String senha, String necessidades, String pais, String estado, String cidade, String telefone) {
         this.id = id;
         this.nome = nome;
-        this.necessidades = necessidade;
         this.email = email;
-        this.localizacao = localizacao;
         this.senha = senha;
-        this.telefone = telefone;
-    }
-
-    public Ong(@NonNull String nome, String necessidades, String email,
-               String localizacao, String senha, String telefone){
-        this.nome = nome;
         this.necessidades = necessidades;
-        this.email = email;
-        this.localizacao = localizacao;
-        this.senha = senha;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
         this.telefone = telefone;
     }
 
-    //region GETTERS, SETTERS, TOSTRING
+    public Ong(@NonNull String nome, String email, String senha, String necessidades, String pais, String estado, String cidade, String telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.necessidades = necessidades;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.telefone = telefone;
+    }
+
+//region GETTERS, SETTERS, TOSTRING
 
     @NonNull
     public String getId() {
@@ -90,12 +94,28 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.necessidades = necessidades;
     }
 
-    public String getLocalizacao() {
-        return localizacao;
+    public String getPais() {
+        return pais;
     }
 
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getTelefone() {
@@ -114,7 +134,9 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", necessidades='" + necessidades + '\'' +
-                ", localizacao='" + localizacao + '\'' +
+                ", pais='" + pais + '\'' +
+                ", estado='" + estado + '\'' +
+                ", cidade='" + cidade + '\'' +
                 ", telefone='" + telefone + '\'' +
                 '}';
     }

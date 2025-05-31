@@ -3,6 +3,7 @@ package com.aula.trabalhoextensionista.ong.novaong;
 import static android.view.View.GONE;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,6 +62,11 @@ public class NovaOngFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        binding.txtEstado.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(2),
+                new InputFilter.AllCaps()
+        });
+
         AppDatabase db = AppDatabase.getDatabase(getContext());
         ongDao = db.OngDAO();
 
@@ -71,7 +77,9 @@ public class NovaOngFragment extends Fragment {
             EditText txtNome = view.findViewById(R.id.txtNome);
             EditText txtNecessidades = view.findViewById(R.id.txtNecessidades);
             EditText txtEmail = view.findViewById(R.id.txtEmail);
-            EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
+            EditText txtPais = view.findViewById(R.id.txtPais);
+            EditText txtEstado = view.findViewById(R.id.txtEstado);
+            EditText txtCidade = view.findViewById(R.id.txtCidade);
             EditText txtSenha = view.findViewById(R.id.txtSenha);
             TextView lblSenha = view.findViewById(R.id.lblSenha);
             EditText txtTelefone = view.findViewById(R.id.txtTelefone);
@@ -80,7 +88,9 @@ public class NovaOngFragment extends Fragment {
             txtNome.setText(ong.getNome());
             txtNecessidades.setText(ong.getNecessidades());
             txtEmail.setText(ong.getEmail());
-            txtLocalizacao.setText(ong.getLocalizacao());
+            txtPais.setText(ong.getPais());
+            txtEstado.setText(ong.getEstado());
+            txtCidade.setText(ong.getCidade());
             txtSenha.setText(ong.getSenha());
             txtTelefone.setText(ong.getTelefone());
 
@@ -88,7 +98,9 @@ public class NovaOngFragment extends Fragment {
             txtNome.setEnabled(false);
             txtNecessidades.setEnabled(false);
             txtEmail.setEnabled(false);
-            txtLocalizacao.setEnabled(false);
+            txtPais.setEnabled(false);
+            txtEstado.setEnabled(false);
+            txtCidade.setEnabled(false);
             txtTelefone.setEnabled(false);
 
             txtSenha.setVisibility(GONE);
@@ -132,7 +144,9 @@ public class NovaOngFragment extends Fragment {
             EditText nomeEditText = rootView.findViewById(R.id.txtNome);
             EditText necessidadesEditText = rootView.findViewById(R.id.txtNecessidades);
             EditText emailEditText = rootView.findViewById(R.id.txtEmail);
-            EditText localizacaoEditText = rootView.findViewById(R.id.txtLocalizacao);
+            EditText txtPais = rootView.findViewById(R.id.txtPais);
+            EditText txtEstado = rootView.findViewById(R.id.txtEstado);
+            EditText txtCidade = rootView.findViewById(R.id.txtCidade);
             EditText senhaEditText = rootView.findViewById(R.id.txtSenha);
             EditText telefoneEditText = rootView.findViewById(R.id.txtTelefone);
 
@@ -142,11 +156,13 @@ public class NovaOngFragment extends Fragment {
             String nome = nomeEditText.getText().toString().trim();
             String necessidades = necessidadesEditText.getText().toString().trim();
             String email = emailEditText.getText().toString().trim().toLowerCase();;
-            String localizacao = localizacaoEditText.getText().toString().trim();
+            String pais = txtPais.getText().toString().trim();
+            String estado = txtEstado.getText().toString().trim();
+            String cidade = txtCidade.getText().toString().trim();
             String senha = senhaEditText.getText().toString().trim();
             String telefone = telefoneEditText.getText().toString().trim();
 
-            Ong ong = new Ong(nome, necessidades, email, localizacao, senha, telefone);
+            Ong ong = new Ong(nome, email, senha, necessidades, pais, estado, cidade, telefone);
             enviaOngFirebase(ong);
             return true;
         }

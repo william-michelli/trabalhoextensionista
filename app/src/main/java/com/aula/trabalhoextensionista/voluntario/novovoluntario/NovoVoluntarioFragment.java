@@ -2,6 +2,7 @@ package com.aula.trabalhoextensionista.voluntario.novovoluntario;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -59,6 +60,11 @@ public class NovoVoluntarioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        binding.txtEstado.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(2),
+                new InputFilter.AllCaps()
+        });
+
         AppDatabase db = AppDatabase.getDatabase(getContext());
         voluntarioDao = db.VoluntarioDAO();
 
@@ -70,7 +76,9 @@ public class NovoVoluntarioFragment extends Fragment {
             EditText txtInteresses = view.findViewById(R.id.txtInteresses);
             EditText txtEmail = view.findViewById(R.id.txtEmail);
             EditText txtSenha = view.findViewById(R.id.txtSenha);
-            EditText txtLocalizacao = view.findViewById(R.id.txtLocalizacao);
+            EditText txtPais = view.findViewById(R.id.txtPais);
+            EditText txtEstado = view.findViewById(R.id.txtEstado);
+            EditText txtCidade = view.findViewById(R.id.txtCidade);
             EditText txtTelefone = view.findViewById(R.id.txtTelefone);
 
             txtId.setText(voluntario.getId());
@@ -79,18 +87,21 @@ public class NovoVoluntarioFragment extends Fragment {
             txtSenha.setText(voluntario.getSenha());
             txtDataNascimento.setText(voluntario.getDataNascimento());
             txtInteresses.setText(voluntario.getInteresses());
-            txtLocalizacao.setText(voluntario.getLocalizacao());
+            txtPais.setText(voluntario.getPais());
+            txtEstado.setText(voluntario.getEstado());
+            txtCidade.setText(voluntario.getCidade());
             txtTelefone.setText(voluntario.getTelefone());
 
             // Disable fields for details view
             txtNome.setEnabled(false);
             txtEmail.setEnabled(false);
             txtSenha.setEnabled(false);
-            txtLocalizacao.setEnabled(false);
+            txtPais.setEnabled(false);
+            txtEstado.setEnabled(false);
+            txtCidade.setEnabled(false);
             txtDataNascimento.setEnabled(false);
             txtInteresses.setEnabled(false);
             txtTelefone.setEnabled(false);
-            txtLocalizacao.setEnabled(false);
         } else {
             txtId.setText("0");
         }
@@ -175,7 +186,9 @@ public class NovoVoluntarioFragment extends Fragment {
             EditText nomeEditText = rootView.findViewById(R.id.txtNome);
             EditText dataNascimentoEditText = rootView.findViewById(R.id.txtDataNascimento);
             EditText telefoneEditText = rootView.findViewById(R.id.txtTelefone);
-            EditText localizacaoEditText = rootView.findViewById(R.id.txtLocalizacao);
+            EditText txtPais = rootView.findViewById(R.id.txtPais);
+            EditText txtEstado = rootView.findViewById(R.id.txtEstado);
+            EditText txtCidade = rootView.findViewById(R.id.txtCidade);
             EditText interessesEditText = rootView.findViewById(R.id.txtInteresses);
             EditText emailEditText = rootView.findViewById(R.id.txtEmail);
             EditText senhaEditText = rootView.findViewById(R.id.txtSenha);
@@ -184,12 +197,14 @@ public class NovoVoluntarioFragment extends Fragment {
             String nome = nomeEditText.getText().toString().trim();
             String dataNascimento = dataNascimentoEditText.getText().toString().trim();
             String telefone = telefoneEditText.getText().toString().trim();
-            String localizacao = localizacaoEditText.getText().toString().trim();
+            String pais = txtPais.getText().toString().trim();
+            String estado = txtEstado.getText().toString().trim();
+            String cidade = txtCidade.getText().toString().trim();
             String interesses = interessesEditText.getText().toString().trim();
             String email = emailEditText.getText().toString().trim().toLowerCase();;
             String senha = senhaEditText.getText().toString().trim();
 
-            Voluntario novoVoluntario = new Voluntario(nome, email, senha, dataNascimento, interesses, localizacao, telefone);
+            Voluntario novoVoluntario = new Voluntario(nome, email, senha, dataNascimento, interesses, pais, estado, cidade, telefone);
             enviaVoluntarioFirebase(novoVoluntario);
             return true;
         }
