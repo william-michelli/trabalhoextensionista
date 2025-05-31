@@ -3,23 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/TelaInicialSelecaoFragment">
+    app:startDestination="@id/TelaLoginFragment">
 
-    <!-- FRAGMENTO DA TELA INICIAL -->
+    <!-- TELA DE LOGIN -->
     <fragment
-        android:id="@+id/TelaInicialSelecaoFragment"
-        android:name="com.aula.trabalhoextensionista.TelaInicialSelecaoFragment"
-        android:label="@string/selecao_label"
-        tools:layout="@layout/fragment_tela_inicial_selecao">
+        android:id="@+id/TelaLoginFragment"
+        android:name="com.aula.trabalhoextensionista.login.LoginFragment"
+        android:label="@string/titulo_login"
+        tools:layout="@layout/fragment_login">
 
         <!-- ACTIONS DE NAVEGAÇÃO -->
         <action
-            android:id="@+id/action_Selecao_to_ListagemOngs"
+            android:id="@+id/action_Login_to_ListagemOngs"
             app:destination="@id/ListagemOngsFragment" />
 
         <action
-            android:id="@+id/action_Selecao_to_ListagemVoluntarios"
+            android:id="@+id/action_Login_to_ListagemVoluntarios"
             app:destination="@id/ListagemVoluntariosFragment" />
+
+        <!-- Action de ir pro Nova ONG -->
+        <action
+            android:id="@+id/action_Login_to_NovaOng"
+            app:destination="@id/NovaOngFragment" />
+
+        <!-- Action de ir pro Novo Voluntario -->
+        <action
+            android:id="@+id/action_Login_to_NovoVoluntario"
+            app:destination="@id/NovoVoluntarioFragment" />
     </fragment>
 
     <!-- FRAGMENTO DA LISTAGEM DE ONGS -->
@@ -29,13 +39,9 @@
         android:label="@string/listagem_ongs_label"
         tools:layout="@layout/fragment_listagem_ongs">
 
+        <!-- Action de ir pro Detalhes ONG -->
         <action
-            android:id="@+id/action_ListagemOngs_to_TelaInicialSelecao"
-            app:destination="@id/TelaInicialSelecaoFragment" />
-
-        <!-- Action de ir pro Nova ONG -->
-        <action
-            android:id="@+id/action_Listagem_to_NovaOng"
+            android:id="@+id/action_Listagem_to_DetalhesOng"
             app:destination="@id/NovaOngFragment" />
     </fragment>
 
@@ -46,13 +52,9 @@
         android:label="@string/listagem_voluntarios_label"
         tools:layout="@layout/fragment_listagem_voluntarios">
 
+        <!-- Action de ir pro Detalhes Voluntario -->
         <action
-            android:id="@+id/action_ListagemVoluntarios_to_TelaInicialSelecao"
-            app:destination="@id/TelaInicialSelecaoFragment" />
-
-        <!-- Action de ir pro Novo Voluntario -->
-        <action
-            android:id="@+id/action_Listagem_to_NovoVoluntario"
+            android:id="@+id/action_Listagem_to_DetalhesVoluntario"
             app:destination="@id/NovoVoluntarioFragment" />
     </fragment>
 

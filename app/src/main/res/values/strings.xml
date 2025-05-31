@@ -2,7 +2,7 @@
     <string name="app_name">trabalhoextensionista</string>
     <string name="action_settings">Settings</string>
 
-    <string name="selecao_label">Selecao</string>
+    <string name="titulo_login">Login</string>
     <string name="listagem_ongs_label">Listagem ONGs</string>
     <string name="listagem_voluntarios_label">Listagem Voluntários</string>
     <string name="cadastrar_ong_titulo">Cadastrar ONG</string>
@@ -29,4 +29,12 @@
     <string name="lbl_telefone">Telefone</string>
     <string name="insira_o_telfone">Insira seu telefone</string>
     <string name="erro_ao_buscar_ongs">Erro ao buscar ongs</string>
+    <string name="email_ong_volunt_rio">Email (ONG / Voluntário)</string>
+    <string name="email_da_ong_ou_volunt_rio">Email da ONG ou Voluntário</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="n_o_tem_cadastro">Não tem Cadastro?</string>
+    <string name="cadastrar_ong">Cadastrar ONG</string>
+    <string name="cadastrar_volunt_rio">Cadastrar Voluntário</string>
+    <string name="digite_a_senha">Digite a senha</string>
 </resources>

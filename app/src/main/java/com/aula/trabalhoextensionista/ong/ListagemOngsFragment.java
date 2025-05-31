@@ -1,7 +1,6 @@
 package com.aula.trabalhoextensionista.ong;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +37,7 @@ public class ListagemOngsFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentListagemOngsBinding.inflate(inflater, container, false);
-
-        //Ao clicar botao + vai para tela de cadastro de ONG
-        binding.fab.setOnClickListener(view -> NavHostFragment.findNavController(ListagemOngsFragment.this)
-                .navigate(R.id.action_Listagem_to_NovaOng));
-
         return binding.getRoot();
     }
 
@@ -93,7 +86,7 @@ public class ListagemOngsFragment extends Fragment {
                                     dadosBundle.putSerializable("ong", ong);
 
                                     NavHostFragment.findNavController(ListagemOngsFragment.this)
-                                            .navigate(R.id.action_Listagem_to_NovaOng, dadosBundle);
+                                            .navigate(R.id.action_Listagem_to_DetalhesOng, dadosBundle);
                                 });
 
                                 //Seta o adapter no RecyclerView

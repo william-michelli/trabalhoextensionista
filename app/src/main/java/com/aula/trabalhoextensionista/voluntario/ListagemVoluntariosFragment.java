@@ -1,7 +1,6 @@
 package com.aula.trabalhoextensionista.voluntario;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aula.trabalhoextensionista.R;
 import com.aula.trabalhoextensionista.data.AppDatabase;
-import com.aula.trabalhoextensionista.data.dao.OngDAO;
 import com.aula.trabalhoextensionista.data.dao.VoluntarioDAO;
-import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.data.models.Voluntario;
-import com.aula.trabalhoextensionista.databinding.FragmentListagemOngsBinding;
 import com.aula.trabalhoextensionista.databinding.FragmentListagemVoluntariosBinding;
-import com.aula.trabalhoextensionista.ong.ListagemOngsFragment;
-import com.aula.trabalhoextensionista.ong.OngAdapter;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ListagemVoluntariosFragment extends Fragment {
@@ -47,12 +39,7 @@ public class ListagemVoluntariosFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentListagemVoluntariosBinding.inflate(inflater, container, false);
-
-        //Ao clicar botao + vai para tela de cadastro de ONG
-        binding.fab.setOnClickListener(view -> NavHostFragment.findNavController(ListagemVoluntariosFragment.this)
-                .navigate(R.id.action_Listagem_to_NovoVoluntario));
 
         return binding.getRoot();
     }
@@ -103,7 +90,7 @@ public class ListagemVoluntariosFragment extends Fragment {
                                             dadosBundle.putSerializable("voluntario", voluntario);
 
                                             NavHostFragment.findNavController(ListagemVoluntariosFragment.this)
-                                                    .navigate(R.id.action_Listagem_to_NovoVoluntario, dadosBundle);
+                                                    .navigate(R.id.action_Listagem_to_DetalhesVoluntario, dadosBundle);
                                         });
 
                                         //Seta o adapter no RecyclerView
@@ -131,7 +118,7 @@ public class ListagemVoluntariosFragment extends Fragment {
                             dadosBundle.putSerializable("voluntario", voluntario);
 
                             NavHostFragment.findNavController(ListagemVoluntariosFragment.this)
-                                    .navigate(R.id.action_Listagem_to_NovoVoluntario, dadosBundle);
+                                    .navigate(R.id.action_Listagem_to_DetalhesVoluntario, dadosBundle);
                         });
 
                         //Seta o adapter no RecyclerView
