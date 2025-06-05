@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".ong.novaong.NovaOngFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <!-- Id-->
+        <EditText
+            android:id="@+id/txtId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_marginBottom="25dp"
+            android:visibility="gone"/>
+
+        <!-- Nome-->
+        <TextView
+            android:id="@+id/detalhesNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="italic|bold"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:background="#0c544c"
+            android:padding="12dp"
+            android:layout_marginBottom="30dp"
+            android:text="Nome da ONG" />
+
+        <!-- Email-->
+        <TextView
+            android:id="@+id/lblLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#10786C"
+            android:text="@string/localiza_o" />
+
+        <TextView
+            android:id="@+id/detalhesLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30.sp"
+            android:text="Pais - Estado Cidade" />
+
+        <!-- Contato-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <View
+                android:id="@+id/blackLine2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:background="#10786C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Necessidades"
+                android:background="#FFFFFF"
+                android:textColor="#10786C"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="8dp" />
+        </RelativeLayout>
+
+        <!-- Necessidades-->
+        <TextView
+            android:id="@+id/detalhesNecessidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30.sp"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:text="necessidade1;necessidade2;necessidade3" />
+
+        <!-- Contato-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <View
+                android:id="@+id/blackLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:background="#10786C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contato"
+                android:background="#FFFFFF"
+                android:textColor="#10786C"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="8dp" />
+        </RelativeLayout>
+
+        <!-- Email-->
+        <TextView
+            android:id="@+id/lblEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#10786C"
+            android:text="@string/lbl_email" />
+
+        <TextView
+            android:id="@+id/detalhesEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="placeholder@email.com" />
+
+        <!-- Telefone -->
+        <TextView
+            android:id="@+id/lblTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#10786C"
+            android:text="@string/lbl_telefone" />
+
+        <TextView
+            android:id="@+id/detalhesTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(00) 3333-9999" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

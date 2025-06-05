@@ -41,4 +41,6 @@
     <string name="cadastrar_ong">Cadastrar ONG</string>
     <string name="cadastrar_volunt_rio">Cadastrar Voluntário</string>
     <string name="digite_a_senha">Digite a senha</string>
+    <string name="contato">Contato</string>
+    <string name="localiza_o">Localização</string>
 </resources>
