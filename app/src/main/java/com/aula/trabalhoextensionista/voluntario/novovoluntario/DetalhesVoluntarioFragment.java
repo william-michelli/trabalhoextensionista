@@ -54,7 +54,7 @@ public class DetalhesVoluntarioFragment extends Fragment {
         TextView txtTelefone = view.findViewById(R.id.detalhesTelefone);
 
         txtNome.setText(voluntario.getNome());
-        txtInteresses.setText(voluntario.getInteresses());
+        txtInteresses.setText(voluntario.getInteresses().toLowerCase());
         txtEmail.setText(voluntario.getEmail());
 
         var local = voluntario.getPais() + ", " + voluntario.getEstado() + " - " + voluntario.getCidade();

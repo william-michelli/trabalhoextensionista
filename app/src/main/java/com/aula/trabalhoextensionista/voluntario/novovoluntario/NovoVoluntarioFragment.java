@@ -28,9 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NovoVoluntarioFragment extends Fragment {
     private View rootView;
-
-    private Voluntario voluntario = null;
-    private VoluntarioDAO voluntarioDao;
     private FragmentNovoVoluntarioBinding binding;
 
     private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
@@ -38,12 +35,7 @@ public class NovoVoluntarioFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true); // Required to show menu in Fragment
-
-        // Pega o voluntario que veio da listagem (Se foi clicado na listagem)
-        if (getArguments() != null) {
-            voluntario = (Voluntario) getArguments().getSerializable("voluntario");
-        }
+        setHasOptionsMenu(true);//Para mostrar o menu de salvar
     }
 
     @Override
@@ -65,56 +57,10 @@ public class NovoVoluntarioFragment extends Fragment {
                 new InputFilter.AllCaps()
         });
 
-        AppDatabase db = AppDatabase.getDatabase(getContext());
-        voluntarioDao = db.VoluntarioDAO();
-
         EditText txtId = view.findViewById(R.id.txtId);
         EditText txtDataNascimento = view.findViewById(R.id.txtDataNascimento);
 
-        if (voluntario != null) {
-            EditText txtNome = view.findViewById(R.id.txtNome);
-            EditText txtInteresses = view.findViewById(R.id.txtInteresses);
-            EditText txtEmail = view.findViewById(R.id.txtEmail);
-            EditText txtSenha = view.findViewById(R.id.txtSenha);
-            EditText txtPais = view.findViewById(R.id.txtPais);
-            EditText txtEstado = view.findViewById(R.id.txtEstado);
-            EditText txtCidade = view.findViewById(R.id.txtCidade);
-            EditText txtTelefone = view.findViewById(R.id.txtTelefone);
-
-            txtId.setText(voluntario.getId());
-            txtNome.setText(voluntario.getNome());
-            txtEmail.setText(voluntario.getEmail());
-            txtSenha.setText(voluntario.getSenha());
-            txtDataNascimento.setText(voluntario.getDataNascimento());
-            txtInteresses.setText(voluntario.getInteresses());
-            txtPais.setText(voluntario.getPais());
-            txtEstado.setText(voluntario.getEstado());
-            txtCidade.setText(voluntario.getCidade());
-            txtTelefone.setText(voluntario.getTelefone());
-
-            // Disable fields for details view
-            txtNome.setEnabled(false);
-            txtEmail.setEnabled(false);
-            txtSenha.setEnabled(false);
-            txtPais.setEnabled(false);
-            txtEstado.setEnabled(false);
-            txtCidade.setEnabled(false);
-            txtDataNascimento.setEnabled(false);
-            txtInteresses.setEnabled(false);
-            txtTelefone.setEnabled(false);
-        } else {
-            txtId.setText("0");
-        }
-
-        // Set screen title
-        if (getActivity() instanceof AppCompatActivity) {
-            AppCompatActivity activity = (AppCompatActivity) getActivity();
-            if (voluntario != null && voluntario.getId() != "") {
-                activity.getSupportActionBar().setTitle("Detalhes Voluntário");
-            } else {
-                activity.getSupportActionBar().setTitle("Cadastrar Voluntário");
-            }
-        }
+        txtId.setText("0");
 
         //region MASCARA PRA DATA NASCIMENTO SER dd/mm/yyyy
         txtDataNascimento.addTextChangedListener(new TextWatcher() {
@@ -133,7 +79,7 @@ public class NovoVoluntarioFragment extends Fragment {
 
                 isUpdating = true;
 
-                // Remove all non-digit characters
+                // Remove todos os caracteres nao digito
                 String unmasked = s.toString().replaceAll("[^\\d]", "");
                 StringBuilder builder = new StringBuilder();
 
@@ -167,15 +113,6 @@ public class NovoVoluntarioFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
-        MenuItem saveItem = menu.findItem(R.id.action_save);
-
-        // Hide save button if editing existing voluntario
-        if (voluntario != null && voluntario.getId() != "") {
-            saveItem.setVisible(false);
-        } else {
-            saveItem.setVisible(true);
-        }
-
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -213,15 +150,13 @@ public class NovoVoluntarioFragment extends Fragment {
 
     private void enviaVoluntarioFirebase(Voluntario voluntario) {
         new Thread(() -> {
-            /** TODO -- Aqui vai enviar os dados para o firebase */
             firebaseDB.collection("voluntario").add(voluntario);
-
-            // Insert into local DB
-            //voluntarioDao.insert(voluntario);
 
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     Toast.makeText(getContext(), "Voluntário cadastrado!", Toast.LENGTH_SHORT).show();
+
+                    // Volta pra tela anterior
                     NavHostFragment.findNavController(NovoVoluntarioFragment.this).popBackStack();
                 });
             }

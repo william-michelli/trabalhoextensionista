@@ -18,6 +18,9 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
     @NonNull
     String nome;
     String email;
+
+    @NonNull
+    String detalhes;
     String senha;
     String necessidades; //O que a ONG precisa que façam
     String pais;
@@ -27,11 +30,12 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     public Ong() { }
 
-    public Ong(@NonNull String id, @NonNull String nome, String email, String senha, String necessidades, String pais, String estado, String cidade, String telefone) {
+    public Ong(@NonNull String id, @NonNull String nome, String email, String senha, String detalhes, String necessidades, String pais, String estado, String cidade, String telefone) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.detalhes = detalhes;
         this.necessidades = necessidades;
         this.pais = pais;
         this.estado = estado;
@@ -39,10 +43,11 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.telefone = telefone;
     }
 
-    public Ong(@NonNull String nome, String email, String senha, String necessidades, String pais, String estado, String cidade, String telefone) {
+    public Ong(@NonNull String nome, String email, String senha, String detalhes, String necessidades, String pais, String estado, String cidade, String telefone) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.detalhes = detalhes;
         this.necessidades = necessidades;
         this.pais = pais;
         this.estado = estado;
@@ -118,6 +123,15 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.cidade = cidade;
     }
 
+    @NonNull
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(@NonNull String detalhes) {
+        this.detalhes = detalhes;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -134,6 +148,7 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", necessidades='" + necessidades + '\'' +
+                ", detalhes='" + detalhes + '\'' +
                 ", pais='" + pais + '\'' +
                 ", estado='" + estado + '\'' +
                 ", cidade='" + cidade + '\'' +

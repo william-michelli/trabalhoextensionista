@@ -57,12 +57,14 @@ public class DetalhesOngFragment extends Fragment {
 
         //Mostra detalhes daquela ONG
         TextView txtNome = view.findViewById(R.id.detalhesNome);
+        TextView txtDetalhes = view.findViewById(R.id.detalhesDetalhes);
         TextView txtNecessidades = view.findViewById(R.id.detalhesNecessidades);
         TextView txtEmail = view.findViewById(R.id.detalhesEmail);
         TextView txtLocalizacao = view.findViewById(R.id.detalhesLocalizacao);
         TextView txtTelefone = view.findViewById(R.id.detalhesTelefone);
 
         txtNome.setText(ong.getNome());
+        txtDetalhes.setText(ong.getDetalhes().toLowerCase());
         txtNecessidades.setText(ong.getNecessidades());
         txtEmail.setText(ong.getEmail());
 

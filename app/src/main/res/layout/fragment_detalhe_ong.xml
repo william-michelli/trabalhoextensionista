@@ -38,7 +38,7 @@
             android:layout_marginBottom="30dp"
             android:text="Nome da ONG" />
 
-        <!-- Email-->
+        <!-- Localizacao-->
         <TextView
             android:id="@+id/lblLocalizacao"
             android:layout_width="match_parent"
@@ -53,6 +53,22 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30.sp"
             android:text="Pais - Estado Cidade" />
+
+        <!-- Detalhes -->
+        <TextView
+            android:id="@+id/lblDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#10786C"
+            android:text="Detalhes" />
+
+        <TextView
+            android:id="@+id/detalhesDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30.sp"
+            android:text="Somos uma ONG blabla..." />
 
         <!-- Contato-->
         <RelativeLayout
