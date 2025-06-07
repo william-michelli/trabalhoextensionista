@@ -54,9 +54,13 @@ public class LoginFragment extends Fragment {
                             for (DocumentSnapshot doc : voluntarioQuery) {
                                 String nome = doc.getString("nome");
                                 String senhaNoBanco = doc.getString("senha");
+                                String interesses = doc.getString("interesses");
 
                                 if(Objects.equals(senhaNoBanco, senha)){
                                     Toast.makeText(requireContext(), "Bem Vindo Voluntário " + nome, Toast.LENGTH_SHORT).show();
+
+                                    Bundle dadosBundle = new Bundle();
+                                    dadosBundle.putSerializable("voluntario_interesses", interesses);
 
                                     // Navega para listagem de ONGS (Voluntario ve ONGS)
                                     NavHostFragment.findNavController(LoginFragment.this)
@@ -76,9 +80,13 @@ public class LoginFragment extends Fragment {
                                             for (DocumentSnapshot doc : ongQuery) {
                                                 String nome = doc.getString("nome");
                                                 String senhaNoBanco = doc.getString("senha");
+                                                String necessidades = doc.getString("necessidades");
 
                                                 if(Objects.equals(senhaNoBanco, senha)){
                                                     Toast.makeText(requireContext(), "Bem Vindo ONG " + nome, Toast.LENGTH_SHORT).show();
+
+                                                    Bundle dadosBundle = new Bundle();
+                                                    dadosBundle.putSerializable("ong_necessidades", necessidades);
 
                                                     // Navega para listagem de Voluntarios (ONG ve Voluntarios)
                                                     NavHostFragment.findNavController(LoginFragment.this)

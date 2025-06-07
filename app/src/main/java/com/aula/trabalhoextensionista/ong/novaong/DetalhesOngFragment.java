@@ -64,8 +64,11 @@ public class DetalhesOngFragment extends Fragment {
         TextView txtTelefone = view.findViewById(R.id.detalhesTelefone);
 
         txtNome.setText(ong.getNome());
-        txtDetalhes.setText(ong.getDetalhes().toLowerCase());
-        txtNecessidades.setText(ong.getNecessidades());
+        txtDetalhes.setText(ong.getDetalhes());
+        
+        String necessidades = ong.getNecessidades();
+        txtNecessidades.setText(necessidades != null ? necessidades.toLowerCase() : "");
+
         txtEmail.setText(ong.getEmail());
 
         var local = ong.getPais() + ", " + ong.getEstado() + " - " + ong.getCidade();

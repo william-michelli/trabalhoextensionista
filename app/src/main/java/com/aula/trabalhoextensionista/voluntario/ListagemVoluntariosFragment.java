@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aula.trabalhoextensionista.R;
 import com.aula.trabalhoextensionista.data.AppDatabase;
 import com.aula.trabalhoextensionista.data.dao.VoluntarioDAO;
+import com.aula.trabalhoextensionista.data.models.Ong;
 import com.aula.trabalhoextensionista.data.models.Voluntario;
 import com.aula.trabalhoextensionista.databinding.FragmentListagemVoluntariosBinding;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListagemVoluntariosFragment extends Fragment {
@@ -34,12 +36,19 @@ public class ListagemVoluntariosFragment extends Fragment {
     private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
     List<Voluntario> voluntarios = new ArrayList<>();
 
+    String necessidadesOng = "";
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentListagemVoluntariosBinding.inflate(inflater, container, false);
+
+        // Pega necessidades da ong
+        if (getArguments() != null) {
+            necessidadesOng = (String)getArguments().getSerializable("ong_necessidades");
+        }
 
         return binding.getRoot();
     }
@@ -60,9 +69,6 @@ public class ListagemVoluntariosFragment extends Fragment {
         voluntarioDao = db.VoluntarioDAO();
 
         new Thread(() -> {
-            //Busca ONGS no banco
-            //ongs = ongDao.getAllOngs();
-
             //Busca dados no FIREBASE
             firebaseDB.collection("voluntario")
                     .get()
@@ -74,6 +80,31 @@ public class ListagemVoluntariosFragment extends Fragment {
                             voluntario.setId(document.getId());
                             voluntarios.add(voluntario);
                         }
+
+                        //region SETA AS ONGs que serao destacadas
+
+                        String interessesVoluntario = "animais;veterinario";
+                        String[] neccesidades = necessidadesOng.toLowerCase().split(";");
+
+                        for (DocumentSnapshot document : queryDocumentSnapshots) {
+                            Voluntario voluntario = document.toObject(Voluntario.class);
+                            voluntario.setId(document.getId());
+
+                            String interessesStr = voluntario.getInteresses(); // ex: "animais;doações"
+                            List<String> interesses = Arrays.asList(interessesStr.toLowerCase().split(";"));
+
+                            // Verifica se algum interesse do voluntário está nas necessidades da ONG
+                            for (String interesse : interesses) {
+                                if (interesses.contains(interesse)) {
+                                    voluntario.setDestaque(true);
+                                    break; // já achou um match, não precisa continuar
+                                }
+                            }
+
+                            voluntario.setId(document.getId());
+                            voluntarios.add(voluntario);
+                        }
+                        //endregion
 
                         if (getActivity() != null) {
                             getActivity().runOnUiThread(new Runnable() {

@@ -13,7 +13,6 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     @PrimaryKey
     @NonNull
-    @Exclude//Nao manda pro fireabase com EXCLUDE
     String id = "";//Usa o ID do firebase
     @NonNull
     String nome;
@@ -27,6 +26,7 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
     String estado;
     String cidade;
     String telefone;
+    private boolean destaque;
 
     public Ong() { }
 
@@ -138,6 +138,14 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
     }
 
     @Override

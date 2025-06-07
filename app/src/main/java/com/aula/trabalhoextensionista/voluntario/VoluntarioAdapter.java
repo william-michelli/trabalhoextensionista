@@ -1,11 +1,13 @@
 package com.aula.trabalhoextensionista.voluntario;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aula.trabalhoextensionista.R;
@@ -53,6 +55,13 @@ public class VoluntarioAdapter extends RecyclerView.Adapter<VoluntarioAdapter.Vi
         holder.itemView.setOnClickListener(v -> {
             clickVoluntarioListener.onItemClick(voluntario);
         });
+
+        // Destaque se houver match
+        if (voluntario.isDestaque()) {
+            holder.textView.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.amarelo_destaque));
+        } else {
+            holder.textView.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
+        }
     }
 
     public interface OnItemClickListener {

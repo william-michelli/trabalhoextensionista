@@ -27,7 +27,7 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
     String cidade;
     String telefone;
 
-
+    private boolean destaque;
 
     public Voluntario() {
 
@@ -140,6 +140,14 @@ public class Voluntario implements Serializable {//Implements Serializable -- PA
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
     }
 
     @Override
