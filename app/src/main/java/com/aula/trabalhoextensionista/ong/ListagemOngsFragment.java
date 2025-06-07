@@ -56,9 +56,6 @@ public class ListagemOngsFragment extends Fragment {
         ongDao = db.OngDAO();
 
         new Thread(() -> {
-            //Busca ONGS no banco
-            //ongs = ongDao.getAllOngs();
-
             //Busca dados no FIREBASE
             firebaseDB.collection("ong")
                 .get()
@@ -70,11 +67,6 @@ public class ListagemOngsFragment extends Fragment {
                         ong.setId(document.getId());
                         ongs.add(ong);
                     }
-
-                    // TODO Valores padrao TIRAR DEPOIS******
-                    // ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
-                    //ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
-
                     if (getActivity() != null) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
