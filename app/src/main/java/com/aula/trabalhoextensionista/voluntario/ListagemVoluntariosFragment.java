@@ -75,16 +75,9 @@ public class ListagemVoluntariosFragment extends Fragment {
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         voluntarios.clear();
 
-                        for (DocumentSnapshot document : queryDocumentSnapshots) {
-                            Voluntario voluntario = document.toObject(Voluntario.class);
-                            voluntario.setId(document.getId());
-                            voluntarios.add(voluntario);
-                        }
+                        //region SETA OS VOLUNTARIOS que serao destacadas
 
-                        //region SETA AS ONGs que serao destacadas
-
-                        String interessesVoluntario = "animais;veterinario";
-                        String[] neccesidades = necessidadesOng.toLowerCase().split(";");
+                        String[] neccessidadesOngLogada = necessidadesOng.toLowerCase().split(";");
 
                         for (DocumentSnapshot document : queryDocumentSnapshots) {
                             Voluntario voluntario = document.toObject(Voluntario.class);
@@ -93,9 +86,9 @@ public class ListagemVoluntariosFragment extends Fragment {
                             String interessesStr = voluntario.getInteresses(); // ex: "animais;doações"
                             List<String> interesses = Arrays.asList(interessesStr.toLowerCase().split(";"));
 
-                            // Verifica se algum interesse do voluntário está nas necessidades da ONG
-                            for (String interesse : interesses) {
-                                if (interesses.contains(interesse)) {
+                            // Verifica se alguma necessidade da Ong está nos interesses do Voluntario
+                            for (String necessidade : neccessidadesOngLogada) {
+                                if (interesses.contains(necessidade)) {
                                     voluntario.setDestaque(true);
                                     break; // já achou um match, não precisa continuar
                                 }

@@ -70,8 +70,7 @@ public class ListagemOngsFragment extends Fragment {
 
                     //region SETA AS ONGs que serao destacadas
 
-                    String interessesVoluntario = "animais;veterinario";
-                    String[] interesses = interessesVoluntario.toLowerCase().split(";");
+                    String[] interessesVoluntarioLogado = interessesVoluntario.toLowerCase().split(";");
 
                     for (DocumentSnapshot document : queryDocumentSnapshots) {
                         Ong ong = document.toObject(Ong.class);
@@ -81,7 +80,7 @@ public class ListagemOngsFragment extends Fragment {
                         List<String> necessidades = Arrays.asList(necessidadesStr.toLowerCase().split(";"));
 
                         // Verifica se algum interesse do voluntário está nas necessidades da ONG
-                        for (String interesse : interesses) {
+                        for (String interesse : interessesVoluntarioLogado) {
                             if (necessidades.contains(interesse)) {
                                 ong.setDestaque(true);
                                 break; // já achou um match, não precisa continuar

@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment {
 
                                     // Navega para listagem de ONGS (Voluntario ve ONGS)
                                     NavHostFragment.findNavController(LoginFragment.this)
-                                            .navigate(R.id.action_Login_to_ListagemOngs);
+                                            .navigate(R.id.action_Login_to_ListagemOngs, dadosBundle);
                                 } else {
                                     Toast.makeText(requireContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
                                 }
@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment {
 
                                                     // Navega para listagem de Voluntarios (ONG ve Voluntarios)
                                                     NavHostFragment.findNavController(LoginFragment.this)
-                                                            .navigate(R.id.action_Login_to_ListagemVoluntarios);
+                                                            .navigate(R.id.action_Login_to_ListagemVoluntarios, dadosBundle);
                                                 } else {
                                                     Toast.makeText(requireContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
                                                 }
