@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".novovoluntario.NovoVoluntarioFragment">
+    android:background="#ffffff"
+    tools:context=".voluntario.novovoluntario.NovoVoluntarioFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,27 +63,123 @@
             android:focusable="true"
             android:clickable="true" />
 
-
-        <!-- Descricao -->
+        <!-- Email-->
         <TextView
-            android:id="@+id/lblDescricao"
+            android:id="@+id/lblEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="@string/lbl_descricao" />
+            android:text="@string/lbl_email" />
 
         <EditText
-            android:id="@+id/txtDescricao"
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
-            android:minHeight="48dp"
-            android:hint="@string/insira_a_descricao" />
+            android:ems="10"
+            android:hint="@string/insira_o_email"
+            android:inputType="textEmailAddress|textNoSuggestions"
+            android:minHeight="48dp" />
 
 
-        <!-- Necessidades-->
+        <!-- Senha -->
+        <TextView
+            android:id="@+id/lblSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_senha" />
+
+        <EditText
+            android:id="@+id/txtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_a_senha"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
+
+
+        <!-- País-->
+        <TextView
+            android:id="@+id/lblPais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_pais" />
+
+        <EditText
+            android:id="@+id/txtPais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_seu_pais"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
+
+
+        <!-- Estado -->
+        <TextView
+            android:id="@+id/lblEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_estado" />
+
+        <EditText
+            android:id="@+id/txtEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_seu_estado"
+            android:inputType="text"
+            android:maxLength="2"
+            android:minHeight="48dp" />
+
+
+        <!-- Cidade -->
+        <TextView
+            android:id="@+id/lblCidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_cidade" />
+
+        <EditText
+            android:id="@+id/txtCidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_sua_cidade"
+            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:minHeight="48dp" />
+
+
+        <!-- Telefone -->
+        <TextView
+            android:id="@+id/lblTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/lbl_telefone" />
+
+        <EditText
+            android:id="@+id/txtTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:hint="@string/insira_o_telfone"
+            android:maxLength="11"
+            android:inputType="number"
+            android:minHeight="48dp" />
+
+
+        <!-- Interesses -->
         <TextView
             android:id="@+id/lblInteresses"
             android:layout_width="match_parent"
@@ -95,7 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect"
+            android:inputType="textAutoComplete|textAutoCorrect"
             android:layout_marginBottom="25dp"
             android:minHeight="48dp"
             android:hint="@string/insira_as_necessidades" />

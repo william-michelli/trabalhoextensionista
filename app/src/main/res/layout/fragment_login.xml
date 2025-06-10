@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#ffffff"
+tools:context=".login.LoginFragment">
+
+<LinearLayout
+    android:id="@+id/centeredLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <!-- EMAIL -->
+    <TextView
+        android:id="@+id/txtEmailLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email_ong_volunt_rio"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#f3f6f4"
+        android:hint="@string/email_da_ong_ou_volunt_rio"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:inputType="textEmailAddress|textNoSuggestions"
+        android:paddingStart="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- SENHA -->
+    <TextView
+        android:id="@+id/txtSenhaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/senha"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextSenha"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="Digite a senha"
+        android:background="#f3f6f4"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:hint="@string/digite_a_senha"
+        android:paddingStart="12dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- BOTAO ENTRAR -->
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#10786C"
+        android:text="@string/entrar"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- BOTAO CADASTRAR -->
+    <TextView
+        android:id="@+id/txtCadastroLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/n_o_tem_cadastro"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="8dp">
+
+        <Button
+            android:id="@+id/btnCadastrarOng"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:backgroundTint="#736F6F"
+            android:text="@string/cadastrar_ong"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnCadastrarVoluntario"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:backgroundTint="#736F6F"
+            android:text="@string/cadastrar_volunt_rio"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

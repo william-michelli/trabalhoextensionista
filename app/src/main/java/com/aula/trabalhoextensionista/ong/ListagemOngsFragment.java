@@ -1,12 +1,10 @@
 package com.aula.trabalhoextensionista.ong;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -21,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListagemOngsFragment extends Fragment {
@@ -28,6 +27,8 @@ public class ListagemOngsFragment extends Fragment {
     private FragmentListagemOngsBinding binding;
 
     private OngDAO ongDao;
+
+    String interessesVoluntario = "";
 
     private RecyclerView recyclerView;
     private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
@@ -38,12 +39,12 @@ public class ListagemOngsFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentListagemOngsBinding.inflate(inflater, container, false);
 
-        //Ao clicar botao + vai para tela de cadastro de ONG
-        binding.fab.setOnClickListener(view -> NavHostFragment.findNavController(ListagemOngsFragment.this)
-                .navigate(R.id.action_Listagem_to_NovaOng));
+        // Pega interesses do voluntario
+        if (getArguments() != null) {
+            interessesVoluntario = (String)getArguments().getSerializable("voluntario_interesses");
+        }
 
         return binding.getRoot();
     }
@@ -59,28 +60,37 @@ public class ListagemOngsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        AppDatabase db = AppDatabase.getDatabase(getContext());
-        ongDao = db.OngDAO();
 
         new Thread(() -> {
-            //Busca ONGS no banco
-            //ongs = ongDao.getAllOngs();
-
             //Busca dados no FIREBASE
             firebaseDB.collection("ong")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     ongs.clear();
 
+                    //region SETA AS ONGs que serao destacadas
+
+                    String[] interessesVoluntarioLogado = interessesVoluntario.toLowerCase().split(";");
+
                     for (DocumentSnapshot document : queryDocumentSnapshots) {
                         Ong ong = document.toObject(Ong.class);
                         ong.setId(document.getId());
+
+                        String necessidadesStr = ong.getNecessidades(); // ex: "animais;doações"
+                        List<String> necessidades = Arrays.asList(necessidadesStr.toLowerCase().split(";"));
+
+                        // Verifica se algum interesse do voluntário está nas necessidades da ONG
+                        for (String interesse : interessesVoluntarioLogado) {
+                            if (necessidades.contains(interesse)) {
+                                ong.setDestaque(true);
+                                break; // já achou um match, não precisa continuar
+                            }
+                        }
+
+                        ong.setId(document.getId());
                         ongs.add(ong);
                     }
-
-                    // TODO Valores padrao TIRAR DEPOIS******
-                    // ongs.add(new Ong(1, "Teste", "teste descricao", "veterinario"));
-                    //ongs.add(new Ong(2, "Teste 2", "teste descricao", "cuidadores;medicos"));
+                    //endregion
 
                     if (getActivity() != null) {
                         getActivity().runOnUiThread(new Runnable() {
@@ -93,7 +103,7 @@ public class ListagemOngsFragment extends Fragment {
                                     dadosBundle.putSerializable("ong", ong);
 
                                     NavHostFragment.findNavController(ListagemOngsFragment.this)
-                                            .navigate(R.id.action_Listagem_to_NovaOng, dadosBundle);
+                                            .navigate(R.id.action_Listagem_to_DetalhesOng, dadosBundle);
                                 });
 
                                 //Seta o adapter no RecyclerView

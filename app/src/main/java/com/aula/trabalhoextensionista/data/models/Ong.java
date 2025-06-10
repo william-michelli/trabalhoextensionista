@@ -13,82 +13,56 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
 
     @PrimaryKey
     @NonNull
-    @Exclude//Nao manda pro fireabase com EXCLUDE
     String id = "";//Usa o ID do firebase
     @NonNull
     String nome;
-    String descricao;
-    String necessidade; //O que a ONG precisa que façam
     String email;
-    String localizacao;
+
+    @NonNull
+    String detalhes;
     String senha;
+    String necessidades; //O que a ONG precisa que façam
+    String pais;
+    String estado;
+    String cidade;
     String telefone;
+    private boolean destaque;
 
     public Ong() { }
 
-    public Ong(@NonNull String id, @NonNull String nome, String descricao, String necessidade,
-               String email, String localizacao, String senha, String telefone){
+    public Ong(@NonNull String id, @NonNull String nome, String email, String senha, String detalhes, String necessidades, String pais, String estado, String cidade, String telefone) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
-        this.necessidade = necessidade;
         this.email = email;
-        this.localizacao = localizacao;
         this.senha = senha;
+        this.detalhes = detalhes;
+        this.necessidades = necessidades;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
         this.telefone = telefone;
     }
 
-    public Ong(@NonNull String nome, String descricao, String necessidade, String email,
-               String localizacao, String senha, String telefone){
+    public Ong(@NonNull String nome, String email, String senha, String detalhes, String necessidades, String pais, String estado, String cidade, String telefone) {
         this.nome = nome;
-        this.descricao = descricao;
-        this.necessidade = necessidade;
         this.email = email;
-        this.localizacao = localizacao;
         this.senha = senha;
+        this.detalhes = detalhes;
+        this.necessidades = necessidades;
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
         this.telefone = telefone;
     }
 
-    //region GETTERS, SETTERS, TOSTRING
+//region GETTERS, SETTERS, TOSTRING
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    @Exclude
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -101,31 +75,94 @@ public class Ong implements Serializable {//Implements Serializable -- PARA PASS
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNecessidade() {
-        return necessidade;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNecessidade(String necessidade) {
-        this.necessidade = necessidade;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNecessidades() {
+        return necessidades;
+    }
+
+    public void setNecessidades(String necessidades) {
+        this.necessidades = necessidades;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    @NonNull
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(@NonNull String detalhes) {
+        this.detalhes = detalhes;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
     }
 
     @Override
     public String toString() {
         return "Ong{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", necessidade='" + necessidade + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", necessidades='" + necessidades + '\'' +
+                ", detalhes='" + detalhes + '\'' +
+                ", pais='" + pais + '\'' +
+                ", estado='" + estado + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", telefone='" + telefone + '\'' +
                 '}';
     }
 
-    //endregion
+//endregion
 }
