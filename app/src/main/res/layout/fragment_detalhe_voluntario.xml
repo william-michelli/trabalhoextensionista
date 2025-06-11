@@ -97,14 +97,14 @@
         </RelativeLayout>
 
         <!-- Interesses -->
-        <TextView
-            android:id="@+id/detalhesInteresses"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagsInteresses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30.sp"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:text="interesse1;interesse2;interesse3" />
+            app:flexWrap="wrap"
+            android:gravity="center"
+            app:justifyContent="center"
+            android:padding="8dp"/>
 
         <!-- Contato-->
         <RelativeLayout

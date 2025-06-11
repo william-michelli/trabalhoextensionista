@@ -1,6 +1,5 @@
 package com.aula.trabalhoextensionista.ong;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,7 @@ public class OngAdapter extends RecyclerView.Adapter<OngAdapter.ViewHolder> {
 
         // Destaque se houver match
         if (ong.isDestaque()) {
-            holder.textView.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.amarelo_destaque));
+            holder.textView.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.verde_destaque));
         } else {
             holder.textView.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
         }

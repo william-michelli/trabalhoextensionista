@@ -101,6 +101,7 @@ public class ListagemOngsFragment extends Fragment {
                                 OngAdapter adapter = new OngAdapter(ongs, ong -> {
                                     Bundle dadosBundle = new Bundle();
                                     dadosBundle.putSerializable("ong", ong);
+                                    dadosBundle.putSerializable("voluntario_interesses", interessesVoluntario);
 
                                     NavHostFragment.findNavController(ListagemOngsFragment.this)
                                             .navigate(R.id.action_Listagem_to_DetalhesOng, dadosBundle);

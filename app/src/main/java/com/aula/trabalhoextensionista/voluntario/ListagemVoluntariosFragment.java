@@ -29,8 +29,6 @@ public class ListagemVoluntariosFragment extends Fragment {
 
     private FragmentListagemVoluntariosBinding binding;
 
-    private VoluntarioDAO voluntarioDao;
-
     private RecyclerView recyclerView;
 
     private FirebaseFirestore firebaseDB = FirebaseFirestore.getInstance();
@@ -65,8 +63,6 @@ public class ListagemVoluntariosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        AppDatabase db = AppDatabase.getDatabase(getContext());
-        voluntarioDao = db.VoluntarioDAO();
 
         new Thread(() -> {
             //Busca dados no FIREBASE
@@ -108,6 +104,7 @@ public class ListagemVoluntariosFragment extends Fragment {
                                     VoluntarioAdapter adapter = new VoluntarioAdapter(voluntarios, voluntario -> {
                                         Bundle dadosBundle = new Bundle();
                                         dadosBundle.putSerializable("voluntario", voluntario);
+                                        dadosBundle.putSerializable("ong_necessidades", necessidadesOng);
 
                                         NavHostFragment.findNavController(ListagemVoluntariosFragment.this)
                                                 .navigate(R.id.action_Listagem_to_DetalhesVoluntario, dadosBundle);

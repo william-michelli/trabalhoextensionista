@@ -47,6 +47,9 @@ dependencies {
     // Outras dependências firebase:
     // https://firebase.google.com/docs/android/setup#available-libraries
 
+    //Para mostrar as tags
+    implementation(libs.google.flexbox)
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
