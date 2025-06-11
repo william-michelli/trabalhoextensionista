@@ -96,14 +96,14 @@
         </RelativeLayout>
 
         <!-- Necessidades-->
-        <TextView
-            android:id="@+id/detalhesNecessidades"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagsNecessidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30.sp"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:text="necessidade1;necessidade2;necessidade3" />
+            app:flexWrap="wrap"
+            android:gravity="center"
+            app:justifyContent="center"
+            android:padding="8dp"/>
 
         <!-- Contato-->
         <RelativeLayout
